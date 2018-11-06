@@ -1,0 +1,191 @@
+<template>
+        <div class="doc-page">
+            <div class="content" @longpress="scaleCanvas">
+                <canvas class="new_canvas" id="thirdCanvas"></canvas>
+                <canvas class="new_canvas" id="fourthCanvas"></canvas>
+            </div>
+        </div>
+    </template>
+    
+    <style>
+        .content {
+            display:flex;
+            flex-direction: column;
+            justify-content:flex-start;
+            align-content:flex-start;
+            width: 100%;
+            height:100%;
+        }
+        .new_canvas {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
+    
+    <script>
+        import prompt from '@system.prompt';
+        import router from '@system.router';
+        export default {
+            private: {
+                drawComplete: false,
+                thirdCanvas:null,
+                timmer:null,
+                thirdCanvasData:null,
+                currentValue:0
+            },
+            onInit() {
+                this.$page.setTitleBar({
+                    text: 'Canvas'
+                })
+            },
+            onShow() {
+                if(!this.drawComplete) {
+                    this.drawCanvas();
+                    var barData=[400,350,110,60,250,450,280,200,260,300];
+                    let length=10;
+                    this.drawBarGraph(100,0,700,500,10,25,barData,length)
+                }
+            },
+            //第三个柱状图
+            drawCanvas() {
+                this.thirdCanvasData=[320,160,280,360,290];
+                const canvas = this.$element('thirdCanvas'); //获取 canvas 组件
+                this.thirdCanvas= canvas.getContext('2d'); //获取 canvas 绘图上下文
+                this.thirdCanvas.beginPath();
+                this.thirdCanvas.lineWidth = 1;
+                var width = 600;
+                var height = 500;
+                var padding = 50;
+                // y轴线
+                this.thirdCanvas.moveTo(100, 0);
+                this.thirdCanvas.lineTo(100,480);
+                this.thirdCanvas.stroke();
+                // x轴线
+                var data=[50,150,250,350,450,550];
+                this.thirdCanvas.moveTo(100,480);
+                this.thirdCanvas.lineTo(700,480);
+                this.thirdCanvas.stroke();
+                var yNumber = 10;                                                // y轴的段数
+                var yLength = 400/10; //20    // y轴每段的真实长度
+                var xLength = 600/data.length;  // x轴每段的真实长度
+
+                this.thirdCanvas.beginPath();
+                this.thirdCanvas.textAlign = 'center';
+                this.thirdCanvas.fillStyle = '#000000';
+                this.thirdCanvas.strokeStyle = '#000000';
+                // x轴刻度和值
+                for (var i = 1; i < data.length; i++) {
+                    // let xAxis = data[i];
+                    // let xlen = xLength * (i + 1);
+                    this.thirdCanvas.moveTo(data[i]+25, 480);//175,275,....,675
+                    this.thirdCanvas.lineTo(data[i]+25, 475);
+                    this.thirdCanvas.stroke();                                       // 画轴线上的刻度
+                    this.thirdCanvas.fillText(i, data[i]+25, 490);   // 填充文字
+                }
+                // y轴刻度和值
+                this.thirdCanvas.strokeStyle="#6C6767";
+                for (var i = 0; i <= yNumber; i++) {
+                    var ylen = yLength * i;//0,20,40,60,80,....200
+                    this.thirdCanvas.moveTo(100, 480-yLength*i);
+                    this.thirdCanvas.lineTo(700, 480-yLength*i);
+                    this.thirdCanvas.stroke();
+                    this.thirdCanvas.fillText(ylen, 85, 480-yLength*i);
+                }
+
+                 //this.looping(data);
+                 var that=this;
+                 this.timmer=setInterval(function(){
+                     if(that.currentValue<=1){
+                         that.currentValue+=0.01;
+                         that.drawAnimation(data);
+                     }
+
+                     else{
+                         clearInterval(that.timmer);
+                         return ;
+                     }
+                 },100)
+                //  this.currentValue=0.1;
+                //  this.drawAnimation(data);
+
+                this.drawComplete = true;
+             },
+             drawAnimation(data) {
+                 this.thirdCanvas.fillStyle="#5212DE";
+                 this.thirdCanvas.strokeStyle="#5212DE";
+                for(let i = 0; i < this.thirdCanvasData.length; i++) {
+                    this.thirdCanvas.fillRect(data[i]+100, 480-this.currentValue*this.thirdCanvasData[i], 50, this.currentValue*this.thirdCanvasData[i]);
+                }
+           },
+
+
+           //第四个柱状图,传入padding-left,padding-top,width,height,x轴的段数，y轴的段数,柱状图高度数组
+           drawBarGraph(paddingLeft,paddingTop,width,height,xNumber,yNumber,barData,length){
+                 var canvas=this.$element('fourthCanvas');
+                 var fourthCanvas=canvas.getContext('2d');
+                 //设置字体,描边颜色
+                 fourthCanvas.textAlign="center";
+                 fourthCanvas.strokeStyle="#000000";
+                 //x轴,刻度
+                 this.drawX(fourthCanvas,paddingLeft,paddingTop,width,height,xNumber)
+                 //y轴,刻度
+                 this.drawY(fourthCanvas,paddingLeft,paddingTop,width,height,yNumber);
+                 //画柱状图
+                //  fourthCanvas.fillStyle="#5212DE";
+                //  fourthCanvas.strokeStyle="#5212DE";
+                 this.drawRect(fourthCanvas,paddingLeft,paddingTop,width,height,xNumber,yNumber,barData,length);
+           },
+           drawX(fourthCanvas,paddingLeft,paddingTop,width,height,xNumber){
+               //x轴的y
+                 let xy=paddingTop+height;
+                 //x轴的每段长度
+                 let xLen=width/xNumber;
+                 fourthCanvas.beginPath();
+                 fourthCanvas.moveTo(paddingLeft,xy);
+                 fourthCanvas.lineTo(paddingLeft+width,xy);
+                 fourthCanvas.stroke();
+                //刻度
+                for(let i=1;i<=xNumber;i++){
+                    fourthCanvas.moveTo(paddingLeft+xLen*i-xLen/2,xy);
+                    fourthCanvas.lineTo(paddingLeft+xLen*i-xLen/2,xy-5);
+                    fourthCanvas.stroke();
+                    fourthCanvas.fillText(i,paddingLeft+xLen*i-xLen/2,xy+25);
+                }
+                fourthCanvas.closePath();
+
+           },
+           drawY(fourthCanvas,paddingLeft,paddingTop,width,height,yNumber){
+                //y轴的每段长度
+                let yLen=height/yNumber;
+                //y轴
+                fourthCanvas.beginPath();
+                fourthCanvas.moveTo(paddingLeft,paddingTop);
+                fourthCanvas.lineTo(paddingLeft,paddingTop+height);
+                fourthCanvas.stroke();
+                //刻度
+                for(let i=0;i<=yNumber;i++){
+                    fourthCanvas.moveTo(paddingLeft,paddingTop+height-i*yLen);
+                    fourthCanvas.lineTo(paddingLeft+width,paddingTop+height-i*yLen);
+                    fourthCanvas.stroke();
+                    fourthCanvas.fillText(i*yLen,paddingLeft-15,paddingTop+height-i*yLen);
+                }
+                fourthCanvas.closePath();
+           },
+           drawRect(fourthCanvas,paddingLeft,paddingTop,width,height,xNumber,yNumber,barData,length){
+                prompt.showToast({message:"length2"+length});
+                let xLen=width/xNumber;
+                let xy=paddingTop+height;
+                let rectWidth=xLen/2;
+                for(let i=0;i<length;i++){
+                    let grad=fourthCanvas.createLinearGradient(paddingLeft+xLen*(i+1)-xLen/2,xy,paddingLeft+xLen*(i+1)-xLen/2,xy-barData[i])
+                    grad.addColorStop(0,"#E8BF0F");
+                    grad.addColorStop(1,"#ED5A03");
+                    fourthCanvas.fillStyle=grad;
+                    fourthCanvas.beginPath();
+                    fourthCanvas.fillRect(paddingLeft+xLen*i+rectWidth,xy-barData[i],rectWidth,barData[i]);
+                    fourthCanvas.closePath();
+                }
+           }
+              
+        }
+    </script>

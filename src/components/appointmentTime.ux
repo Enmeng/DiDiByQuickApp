@@ -1,0 +1,197 @@
+<template>
+        <div class="page">
+           <div class="title">
+               <div><text @click="cancelHandler">取消</text></div>
+               <div class="selectTimeTip"><text>选择用车时间</text><text>起点当地时间</text></div>
+               <div><text style="color:orange" @click="confirmHandler">确定</text></div>
+           </div>
+           <div class="content">
+               <div class="date">
+                   <text>日期</text>
+                   <select @change="dateChange">
+                       <option for="{{dateList}}">{{$item}}</option>
+                   </select>
+               </div>
+               <div class="hour">
+                    <text>时间</text>
+                    <select @change="hourChange">
+                        <option for="{{hourList}}">{{$item}}</option>
+                    </select>
+                </div>
+                <div class="minute">
+                      <select @change="minuteChange">
+                         <option for="{{minuteList}}">{{$item}}</option>
+                      </select>
+                </div>
+           </div>
+           <!-- <div>
+               <input type="button" value="click" @click="clickHandler"></input>
+               <text>{{value}}</text>
+            </div> -->
+           
+        </div>
+    </template>
+      
+    <style>
+            .page{
+                display:flex;
+                justify-content:flex-start;
+                align-content:flex-start;
+                /* align-items:center; */
+                flex-direction:column;
+                width:100%;
+                height:100%;
+            }
+            .title{
+                display:flex;
+                flex-direction:row;
+                justify-content:space-between;
+                align-content:space-between;
+                /* align-items:center; */
+            }
+            .selectTimeTip{
+                display:flex;
+                flex-direction:column;
+            }
+            .content{
+                display:flex;
+                justify-content:space-between;
+                align-content:space-between;
+            }
+            select{
+                margin-left:20px;
+            }
+         </style>
+      
+      <script>
+        export default {
+           data(){
+            return {
+              dateList:[],
+              hourList:[],
+              minuteList:[],
+              dateIndex:0,
+              hourIndex:0,
+              minuteIndex:0
+            }
+           },
+          onInit:function(){
+          //this.$on('AppointmentTimeV', this.cancelHandler)
+          this.dateIndex=0;
+          var date=new Date();
+          var date1=(date.getMonth()+1)+"月"+date.getDate()+"日 "+this.changeDayTo(date.getDay());
+          this.dateList=[];
+          this.dateList.splice(this.dateList.length,0,date1);
+          var hour=date.getHours();
+          this.hourList=[];
+          this.getRestHour(hour);
+          var minute=date.getMinutes();
+          this.minuteList=[];
+          this.getRestMinute(date.getMinutes());
+          var nextDay=new Date();
+          nextDay.setDate(nextDay.getDate()+1);
+          date1=(nextDay.getMonth()+1)+"月"+nextDay.getDate()+"日 "+this.changeDayTo(nextDay.getDay());
+          this.dateList.splice(this.dateList.length,0,date1);
+          nextDay.setDate(nextDay.getDate()+1);
+          date1=(nextDay.getMonth()+1)+"月"+nextDay.getDate()+"日 "+this.changeDayTo(nextDay.getDay());
+          this.dateList.splice(this.dateList.length,0,date1);
+       },
+       getRestHour:function(hour){
+           this.hourList=[];
+           let arr=[];
+           for(let i=hour;i<=23;i++){
+               arr.splice(arr.length,0,i+"点");
+           }
+           this.hourList=this.hourList.concat(arr);
+       },
+       getRestMinute:function(minute){
+           this.minuteList=[];
+           minute=Math.floor(minute/10+1)*10;
+           let arr=[];
+           for(let i=minute;i<=60;){
+               arr.splice(arr.length,0,i+"分");
+               i+=10;
+           }
+           this.minuteList=this.minuteList.concat(arr);
+       },
+       changeDayTo:function(num){
+           var str="";
+          switch(num){
+              case 0:
+                    str="星期日";
+                    break;
+              case 1:
+                    str="星期一";
+                    break;
+              case 2:
+                    str="星期二";
+                    break;
+              case 3:
+                    str="星期三";
+                    break;
+              case 4:
+                    str="星期四";
+                    break;
+              case 5:
+                    str="星期五";
+                    break;
+              case 6:
+                    str="星期六";
+                    break;
+              default:break;
+          }
+          return str;
+       },
+       dateChange:function(res){
+          let index=this.dateList.indexOf(res.newValue);
+          this.dateIndex=index;
+          if(index==0){
+              let date=new Date();
+              var hour=date.getHours();
+              var minute=date.getMinutes();
+              this.getRestHour(hour);
+              this.getRestMinute(minute);
+          }else{
+              this.getOtherHour();
+              this.getOtherMinute();
+          }
+       },
+       getOtherHour:function(){
+           this.hourList=[];
+           for(let i=0;i<=23;i++){
+               this.hourList.splice(this.hourList.length,0,i+"点");
+           }
+       },
+       getOtherMinute:function(){
+           this.minuteList=[];
+           for(let i=10;i<=60;){
+               this.minuteList.splice(this.minuteList.length,0,i+"分");
+               i+=10;
+           }
+       },
+       hourChange:function(res){
+           let index=this.hourList.indexOf(res.newValue);
+           this.hourIndex=index;
+           if(index==0 && this.dateIndex==0){
+               let date=new Date();
+               let minute=date.getMinutes();
+               this.getRestMinute(minute);
+           }else{
+               this.getOtherMinute();
+           }
+       },
+       minuteChange:function(res){
+           let index=this.minuteList.indexOf(res.newValue);
+           this.minuteInde=index;
+       },
+       cancelHandler:function(){
+           //
+           this.$dispatch('AppointmentTimeV',{params:{"handler":"cancel"}});
+       },
+       confirmHandler:function(){
+           this.$dispatch('AppointmentTimeV',{params:{"handler":"confirm","date":this.dateList[this.dateIndex],"hour":this.hourList[this.hourIndex],"minute":this.minuteList[this.minuteIndex]}});
+       }
+       
+   }
+      </script>
+      

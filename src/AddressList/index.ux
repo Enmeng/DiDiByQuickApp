@@ -1,0 +1,146 @@
+<template>
+    <div class="demo-page" >
+       <div class="item">
+         <text>当前城市：{{cCity}}</text>
+       </div>
+       <div class="item">
+         <input  placeholder="城市中文名" @enterkeyclick="enterKeyClick" type="text" ></input>
+       </div>
+       <div class="item addressList">
+         <div>
+            <text class="tipText">省/直辖市</text>
+            <select @change="selectProChange">
+              <option for="pro in listPro">{{pro}}</option>
+            </select>
+            <text class="tipText" style="font-size:60px;"><span>|</span></text>
+         </div>
+         <div>
+           <text class="tipText">市/区</text>
+           <select @change="selectCityChange">
+             <option for="city in listCity">{{city}}</option>
+           </select>
+           <text class="tipText" style="font-size:60px;"><span>|</span></text>
+         </div>
+         <div>
+          <text class="tipText">区</text>
+          <select @change="selectCountyChange">
+            <option for="county in listCounty">{{county}}</option>
+          </select>
+        </div>
+       </div>
+       <!-- <div>
+         <input type="button" value="click" @click="showValue"></input>
+       </div>
+       <div>
+          <text>{{value}}</text>
+       </div> -->
+    </div>
+  </template>
+  
+  <style>
+    .demo-page {
+      display:flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .item{
+      background-color:rgba(255,255,255,0.1);
+      margin-top:20px;
+    }
+    input{
+      width:80%;
+      height:60px;
+      border:1px solid #eee;
+      font-size:30px;
+    }
+    .tipText{
+      margin-right:20px;
+      color:rgba(134, 185, 18, 0.8);
+    }
+    option{
+      margin-bottom:10px;
+    }
+    .addressList{
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+    }
+  </style>
+  
+  <script>
+    import fetch from '@system.fetch';
+    import prompt from '@system.prompt';
+    export default {
+      data:{
+        currentCity:'',
+        cCity:"",
+        selectPro:"",
+        selectCity:"",
+        selectCounty:"",
+        listPro:["请选择"],
+        listCity:["请选择"],
+        listCounty:["请选择"],
+        value:""
+      },
+      onInit:function(){
+        prompt.showToast({message:this.currentCity});
+        
+        var that=this;
+        fetch.fetch({
+        // url: 'http://10.1.29.16:3000/city',
+        url:'http://172.17.176.49:3000/city',
+        success: function (response) {
+            that.listPro=[].concat(JSON.parse(response.data));
+        },
+        fail: function (err, code) {
+            prompt.showToast({message:err});
+        }
+       })
+      },
+      enterKeyClick:function(res){
+        this.selectCity=res.value;
+      },
+      selectProChange:function(res){
+        this.selectPro=res.newValue;
+        var url='http://172.17.176.49:3000/city'+'?currentPro='+this.selectPro;
+        var that=this;
+        fetch.fetch({
+        url: url,
+        success: function (response) {
+            that.listCity=[].concat(JSON.parse(response.data));
+        },
+        fail: function (err, code) {
+            prompt.showToast({message:err});
+        }
+       })
+      },
+      selectCityChange:function(res){
+        this.selectCity=res.newValue;
+        var url='http://172.17.176.49:3000/city'+'?currentPro='+this.selectPro+'&&currentCity='+this.selectCity;
+        var that=this;
+        fetch.fetch({
+          url:url,
+          success:function(response){
+            that.listCounty=[].concat(JSON.parse(response.data));
+          },
+          fail:function(err,code){
+            prompt.showToast({message:err});
+          }
+        })
+      },
+      selectCountyChange:function(res){
+        this.selectCounty=res.newValue;
+      },
+      onHide:function(){
+      // 页面被切换隐藏时，将要传递的数据对象写入global数据
+      // this.$app.$data.AddressList = {
+      //   gotoPage: '/DemeDetail',
+      //   params: {
+      //     msg: this.selectCity
+      //   }
+      // }
+    }
+    }
+  </script>
+  

@@ -1,0 +1,635 @@
+<import name="appointment-time" src="../components/appointmentTime"></import>
+<template>
+        <div class="tutorial-page">
+           <div class="title-information">
+             <div class="title-information-item">
+              <image src="/Common/icon-user.png" class="title-image icon-user title-information-item" @click="showPanel"></image>
+            </div>
+              <div class="title-information-item" @click="GoAddressList">
+                  <text>{{currentCity}}</text>
+                  <image class="title-image" src="/Common/icon_down.png"></image>
+              </div>
+              <div class="title-information">
+                  <image class="title-image" src="/Common/icon-message.png" @click="messageClick"></image>
+              </div>
+              <div class="title-information">
+                  <image class="title-image" src="/Common/icon-scan.png" @click="openScan"></image>
+              </div>
+           </div>
+            <tabs style="height:80px;margin-left:10px;">
+                  <tab-bar class="tab-bar" mode="scrollable">
+                    <text class="title-item" @click="showSafePage">安全指南</text>
+                    <text class="title-item" @click="showMap">快车</text>
+                    <text class="title-item" @click="showLuxury">豪华车</text>
+                    <text class="title-item" @click="showOrange">礼橙专车</text>
+                    <text class="title-item" @click="showShunFeng">顺风车</text>
+                    <text class="title-item" @click="showTaxi">出租车</text>
+                    <text class="title-item" @click="showDriving">代驾</text>
+                    <text class="title-item" @click="showBus">公交</text>
+                    <text class="title-item" @click="showBike">单车</text>
+                    <text class="title-item" @click="showSecond">二手车</text>
+                    <text class="title-item" @click="showSelf">自驾租车</text>
+                  </tab-bar>
+                  <!-- <tab-content class="tab-content">
+                      <div class="tab-content-section">
+                        <text>content1</text>
+                      </div>
+                      <div class="tab-content-section">
+                        <text>content2</text>
+                      </div>
+                      <div class="tab-content-section">
+                        <text>content3</text>
+                      </div>
+                    </tab-content> -->
+                </tabs>
+              
+              <!-- 快车 -->
+              <map id="map" style="width: 100%;height:80%;" latitude="{{latitude}}" longitude="{{longitude}}" scale="{{scale}}"
+              coordtype="{{coordtype}}" showmylocation="{{showmylocation}}" markers="{{markers}}"
+              controls="{{controls}}"
+              @loaded="loaded"
+              @callouttap="callouttap"
+              @regionchange="regionchange"
+              @controltap="controltap"
+              show="{{showMap}}"
+              @markertap="markerTap"
+              >
+            </map>  
+      
+            <!-- 安全指南 -->
+              <div class="otherPage" style="width: 100%;height:80%;" show="{{otherPage}}">
+                 <text>{{otherPageMessage}}</text>
+              </div>
+            
+            <!-- <input @click="btnClickHandler" value="get File" id="popup" type="button"></input>
+            <text style="width:10%">{{value}}</text> -->
+            
+            <!-- 提示信息面板 -->
+            <div class="information" @swipe="swipeHandler" id="information" style="height:{{panelHeight}}">
+              <div class="tipInformation" style="display:flex;flex-direction:column;">
+                  <div>
+                      <image src="/Common/navigation.png"></image>
+                      <text>请勿让未成年人独自乘车，需由监护人陪同</text>
+                  </div>
+                  <input type="button" value="查看详情" @click="showDetail"></input>
+               </div>
+              <div class="appointment">
+                <div>
+                  <input type="button" value="现在" class="nowTime" @click="GoToCanvas"></input>
+                  <input type="button" value="预约" class="nowTime" @click="appointmentTimeShow"></input>
+                </div>
+                <div>
+                  <text>{{appointmentTime}}</text>
+                </div>
+              </div>
+              <div class="address">
+                  <input type="button" value="{{currentAddress}}" class="startAddress"></input>
+                  <input type="button" value="您要去哪儿" class="endAddress"></input>
+              </div>
+            </div>
+           <!-- 用户面板 -->
+            <div class="mask" show="{{visibility}}" @click="hidePanel">
+                <div class="userInformationPanel" style="padding-top:40px">
+                    <div class="part partUser">
+                      <image src="/Common/user.png" class="panel-image" style="width:100px;"></image>
+                      <text >134*****604</text>
+                    </div>
+                    <div class="part">
+                      <image src="/Common/normalUser.png" class="panel-image"></image>
+                      <text>普通用户 ></text>
+                    </div>
+                    <div class="part partList">
+                      <list>
+                        <list-item  type="productLeft" class="content-item">
+                          <image src="/Common/order.png" class="panel-image"></image>
+                          <text>订单</text>
+                        </list-item>
+                        <list-item type="productLeft" class="content-item">
+                          <image src="/Common/safe.png" class="panel-image"></image>
+                          <text>安全</text>
+                        </list-item>
+                        <list-item type="productLeft" class="content-item">
+                          <image src="/Common/wallet.png" class="panel-image"></image>
+                          <text>钱包</text>
+                        </list-item>
+                        <list-item type="productLeft" class="content-item"> 
+                          <image src="/Common/service.png" class="panel-image"></image>
+                          <text>客服</text>
+                        </list-item>
+                        <list-item type="productLeft" class="content-item">
+                          <image src="/Common/setting.png" class="panel-image"></image>
+                          <text>设置</text>
+                        </list-item>
+                      </list>
+                    </div>
+                    <div class="part partBottom">
+                       <div class="btm">
+                          <image src="/Common/gift.png" class="panel-image"></image>
+                          <text>推荐有奖</text>
+                       </div>
+                       <div class="btm">
+                          <image src="/Common/worker.png" class="panel-image"></image>
+                          <text>车主招募</text>
+                       </div>
+                       <div class="btm">
+                          <image src="/Common/student.png" class="panel-image"></image>
+                          <text>学生中心</text>
+                       </div>
+                    </div>
+                  </div>
+               </div>
+            
+               <div class="appointmentTimeMask" show="{{appointmentTimeV}}" @click="appointmentTimeVHide">
+                  <div class="appointmentTime" show="{{appointmentTimeV}}">
+                      <appointment-time @AppointmentTimeV="AppointmentVHandler"></appointment-time>
+                  </div>
+               </div>
+            
+      
+      </template>
+      
+      <style>
+        .tutorial-page{
+          flex: 1;
+          flex-direction: column;
+          width:100%;
+          height:100%;
+        }
+        /* .title-information{
+          display:flex;
+          flex-direction: column;
+      4   align-items: center;
+        } */
+        .title-information-item{
+          width:300px;
+        }
+        .title-image{
+          width:40px;
+          margin-left:20px;
+        }
+        .panel-image{
+          width:50px;
+        }
+        .tab-bar{
+          width:100%;
+        }
+        .title-item{
+          height:80px;
+          width:160px;
+          text-align:center;
+        }
+        .information{
+          width:100%;
+          height:20%;
+          background-color:rgba(255,255,255,0.1);
+          display:flex;
+          flex-direction:column;
+          justify-content:space-between;
+          align-content:center;
+          align-items:center;
+          /* position:fixed; */
+        }
+        .address{
+          display:flex;
+          flex-direction:column;
+        }
+        input{
+          background-color:rgba(255,255,255,0.1);
+          border-radius:4px;
+          border:1px solid rgba(255,255,255,1);
+          color:rgba(0,0,0,0.5);
+          font-size:26px;
+        }
+        .mask{
+          width:100%;
+          height:100%;
+          top:0px;
+          bottom:0px;
+          left:0px;
+          position:fixed;
+          visibility:hidden;
+          background-color:rgba(0,0,0,0.4);
+        }
+        .appointmentTimeMask{
+          width:100%;
+          height:100%;
+          top:0px;
+          bottom:0px;
+          left:0px;
+          position:fixed;
+          /* visibility:hidden; */
+          background-color:rgba(0,0,0,0.4);
+        }
+        .appointment{
+          display:flex;
+          flex-direction:column;
+          justify-content:center;
+          align-content:center;
+          
+        }
+        .userInformationPanel{
+          width:70%;
+          height:100%;
+          top:0px;
+          bottom:0px;
+          left:0px;
+          /* position:fixed; */
+          background-color:#fff;
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          flex-direction:column;
+          justify-content:space-between; 
+          align-content:space-around;
+        }
+        .part{
+          margin-bottom:50px;
+        }
+        .partUser{
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          flex-direction:column;
+        }
+        .partList{
+          margin-left:60px;
+      
+        }
+        .content-item{
+           padding-bottom:50px;
+        }
+        .partBottom{
+          margin-bottom:20px;
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          justify-content:space-between; 
+        }
+        .btm{
+          width:20%;
+        }
+        .nowTime{
+          border-radius:30px;
+          
+        }
+        .appointmentTime{
+          width:100%;
+          height:50%;
+          bottom:0px;
+          left:0px;
+          background-color:#fff;
+          position:fixed;
+        }
+        /* .otherPage{
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          visibility:hidden;
+        } */
+      </style>
+      <!-- <script src="Common/zrender.js"></script> -->
+      <script>
+        import router from '@system.router';
+        import barcode from '@system.barcode';
+        import file from '@system.file';
+        import fetch from '@system.fetch';
+        import websocketfactory from '@system.websocketfactory';
+        import prompt from '@system.prompt';
+        const POINT1 = { latitude: 39.9090371069, longitude: 116.3953853161 };
+        const POINT2 = { latitude: 39.9089550115, longitude: 116.3992842749 };
+        var currentLocation={};
+        const MARKER={
+              id:2,
+              iconPath:'/Common/car.png',
+              width:'60px',
+              anchor:{x:0.5,y:0.5},
+              latitude:39.9090371069,
+              longitude:116.3953853161,
+              // rotate:-45
+            };
+        export default {
+          private: {
+            scale: 18,
+            timmer:null,
+            // centerlocation: "",
+            // region: "",
+            // supportedcoordtypes: "",
+            // coordtypeformap: "",
+            showmylocation:true,
+            markers:[
+            {
+              id:1,
+              iconPath:'/Common/icon-center.png',
+              width:'60px',
+              anchor:{x:1,y:1},
+              latitude:39.9090371069,
+              longitude:116.3953853161,
+              callout:{
+                content:"2分钟后上车",
+                color:"#FABC05",
+                padding:"20px 5px 20px 5px",
+                borderRadius:"30px",
+                display:"always"
+              }
+      
+            }
+            ],
+            polylines:null,
+            regioncontent:null,
+            currentCity:"广州市",
+            value:11,
+            controls:[{
+              id: 1,
+              position: { right: "15px", bottom: "300px", width: "70px" },
+              iconPath: "/Common/icon-goback.png"
+            }],
+            index:2,
+            visibility:false,
+            otherPage:false,
+            showMap:true,
+            otherPageMessage:"",
+            panelHeight:"40%",
+            currentAddress:"",
+            centerLocation:{},
+            appointmentTimeV:false,
+            appointmentTime:""
+          },
+          onInit:function(){
+            this.$on('AppointmentTimeV',this.AppointmentVHandler);
+          },
+          onShow:function(){
+        //     if (this.$app.$data.AddressList && this.$app.$data.AddressList.gotoPage === '/DemeDetail') {
+        // // 从global数据中获取回传给本页面的数据
+        //      var data = this.$app.$data.AddressList.params;
+        //       this.currentCity = data.msg;
+        // }
+          },
+          controltap:function(res){
+            this.value="controltap";
+            var that=this;
+            if(currentLocation!=null){
+               var marker=Object.assign({},that.markers[0],{latitude:currentLocation.latitude,longitude:currentLocation.longitude});
+               this.markers = that.markers.map(t => {
+                return t.id === marker.id? marker: t;
+               });
+            }
+          },
+          loaded:function(){
+            this.$element("map").moveToMyLocation();
+            var that=this;
+            //当加载完成后设置marker在当前位置,之后随视野范围变化
+             this.$element('map').getCenterLocation({
+              success: function (res) {
+               var marker=Object.assign({},that.markers[0],{latitude:res.latitude,longitude:res.longitude});
+               that.markers = that.markers.map(t => {
+                return t.id === marker.id? marker: t;
+               });
+               currentLocation.latitude=res.latitude+10;
+               currentLocation.longitude=res.longitude+10;
+               var point={latitude:res.latitude,longitude:res.longitude};
+               currentLocation.longitude=res.longitude;
+               that.currentAddress="当前位置 latitude: "+res.latitude+",longitude: "+res.longitude;
+               that.centerLocation={latitude:res.latitude,longitude:res.longitude};
+              }
+            })
+      
+            
+          },
+          callouttap:function(res){
+      
+          },
+          getCenterLocation(){
+             
+          },
+          
+          //扫二维码
+          openScan:function(){
+            var that=this;
+            barcode.scan({
+               success: function (data) {
+                 that.value=data.result;
+               },
+               fail: function (data, code) {
+                that.value=`handling fail, code = ${code}`;
+               }
+            })
+          },
+          //region变化
+          regionchange:function(){
+            
+            var that = this;
+            //移动的marker,随视野范围变化
+             this.$element('map').getCenterLocation({
+              success: function (res) {
+               var marker=Object.assign({},that.markers[0],{latitude:res.latitude,longitude:res.longitude});
+               that.markers = that.markers.map(t => {
+                return t.id === marker.id? marker: t;
+               });
+               that.centerLocation=Object.assign({},that.centerLocation,{latitude:res.latitude,longitude:res.longitude});
+              }
+            })
+            // 当视野变化时随机生成car的markers
+            this.$element('map').getRegion({
+              success: function (res) {
+                 let latitude=res.northeast.latitude -  res.southwest.latitude;
+                 let longitude=res.northeast.longitude  - res.southwest.longitude;
+                 clearInterval(that.timmer);
+                 that.timmer=setInterval(function(){
+                let increaseOrNot=Math.round(Math.random());
+                let currentLength=that.markers.length;
+                if(increaseOrNot==1){
+                  //增加car
+                  let latitudeTemp=latitude*Math.random()+res.southwest.latitude;
+                  let longitudeTemp=longitude*Math.random()+res.southwest.longitude;
+                  var marker=Object.assign({},MARKER,{id:that.index++,latitude:latitudeTemp,longitude:longitudeTemp});
+                  that.markers.splice(currentLength,0,marker);
+                  var lat=latitudeTemp+1;
+                  //that.value="marker id: "+marker.id;
+                  that.markerTap();
+                  // that.$element("map").translateMarker({
+                  //   markerId: marker.id,
+                  //   destination:{latitude:res.southwest.latitude,longitude:res.southwest.longitude} ,
+                  //   autoRotate: true,
+                  //   duration: 2000,
+                  //   success:function(){
+                  //     that.value="success";
+                  //   },
+                  //   fail:function(){
+                  //     that.value="fail";
+                  //   }
+                  // });
+                }else{
+                  //减少car
+                  var decreaseIndex=Math.random()*(currentLength)+1;
+                  let marker=Object.assign({},that.markers[decreaseIndex]);
+                  that.markers.splice(decreaseIndex,1);
+                }
+              },2000)
+              }
+            })
+          },
+          markerTap:function(){
+            var that=this;
+            let latitudeTemp,longitudeTemp;
+            this.$element('map').getRegion({
+              success: function (res) {
+                 let latitude=res.northeast.latitude -  res.southwest.latitude;
+                 let longitude=res.northeast.longitude  - res.southwest.longitude;
+                 latitudeTemp=res.northeast.latitude-latitude*Math.random();
+                 longitudeTemp=res.northeast.longitude-longitude*Math.random();
+                 that.$element("map").translateMarker({
+                markerId: that.index-1,
+                destination: {latitude:latitudeTemp,longitude:longitudeTemp},
+                autoRotate: false,
+                duration: 10000,
+                success:function(){
+                },
+                fail:function(){
+                }
+            })
+              }
+            });
+            
+          },
+          messageClick:function(){
+            router.push({
+              uri:'/DemoDetail'
+            })
+          },
+          GoToCanvas:function(){
+            router.push({
+              uri:'/Canvas'
+            })
+          },
+          GoAddressList:function(){
+            router.push({
+              uri:"/AddressList",
+              params:{
+                currentCity:this.currentCity
+              }
+            })
+          },
+          swipeHandler:function(res){
+            //this.value=res.direction;
+            let direction=res.direction;
+            let pH=Number(this.panelHeight.split('%')[0]);
+            if(direction=="up"){
+              if(pH<100){
+                pH+=50;
+                
+              }else{
+                pH=100;
+                
+              }
+              this.panelHeight=pH+'%';
+              this.value=pH;
+              return ;
+            }
+            else if(direction=="down"){
+              if(pH>90){
+                pH-=50;
+                
+              }else{
+                pH=40;
+              }
+              this.panelHeight=pH+'%';
+              this.value=pH;
+              return ;
+            }
+            return ;
+          },
+          showPanel:function(){
+            this.visibility=true;
+          },
+          hidePanel:function(){
+            this.visibility=false;
+          },
+          showSafePage:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="安全指南";
+          },
+          showLuxury:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="豪华车";
+          },
+          showOrange:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="礼橙专车";
+          },
+          showShunFeng:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="顺丰车";
+          },
+          showTaxi:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="出租车";
+          },
+          showDriving:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="代驾";
+          },
+          showBus:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="公交";
+          },
+          showBike:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="单车";
+          },
+          showSecond:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="二手车";
+          },
+          showSelf:function(){
+            this.otherPage=true;
+            this.showMap=false;
+            this.otherPageMessage="自驾租车";
+          },
+          showMap:function(){
+            this.otherPage=false;
+            this.showMap=true;
+          },
+          showDetail:function(){
+            router.push({
+              uri:'/DemoDetail'
+            })
+          },
+          btnClickHandler:function(){
+            var that=this;
+            file.readText({
+              uri: '/Common/test.txt',
+              success: function (data) {
+                that.value=data.text;
+              },
+              fail: function (data, code) {
+              that.value=`handling fail, code = ${code}`;
+              }
+            })
+
+
+          },
+          appointmentTimeShow:function(){
+            this.appointmentTimeV=true;
+          },
+          AppointmentVHandler:function(event){
+            this.appointmentTimeV=false;
+            prompt.showToast({message:event.detail.params});
+            var message=event.detail.params;
+            if(message.handler=="confirm"){
+              this.appointmentTime="预约时间:"+message.date+message.hour+message.minute;
+            }
+          },
+          appointmentTimeVHide:function(){
+            this.appointmentTimeV=false;
+          }
+        }
+      </script>
