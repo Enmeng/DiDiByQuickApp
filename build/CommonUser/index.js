@@ -63,17 +63,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 161);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 145:
+/***/ 161:
 /***/ (function(module, exports, __webpack_require__) {
 
-var $app_template$ = __webpack_require__(146)
-var $app_style$ = __webpack_require__(147)
-var $app_script$ = __webpack_require__(148)
+var $app_template$ = __webpack_require__(162)
+var $app_style$ = __webpack_require__(163)
+var $app_script$ = __webpack_require__(164)
 
 $app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
      $app_script$($app_module$, $app_exports$, $app_require$)
@@ -89,267 +89,168 @@ $app_bootstrap$('@app-component/index',{ packagerVersion: '0.0.5'})
 
 /***/ }),
 
-/***/ 146:
+/***/ 162:
 /***/ (function(module, exports) {
 
 module.exports = {
   "type": "div",
   "attr": {},
   "classList": [
-    "demo-page"
+    "commonUserPage"
   ],
   "children": [
     {
-      "type": "image",
-      "attr": {
-        "id": "icon",
-        "src": function () {return this.icon}
-      },
-      "id": "icon"
-    },
-    {
-      "type": "text",
-      "attr": {
-        "id": "name",
-        "value": function () {return this.name}
-      },
-      "id": "name"
-    },
-    {
       "type": "div",
-      "attr": {
-        "id": "tags"
-      },
-      "id": "tags",
+      "attr": {},
+      "classList": [
+        "pageTitle"
+      ],
       "children": [
         {
           "type": "text",
           "attr": {
-            "value": "无安装"
-          },
-          "classList": [
-            "tag"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "|"
-          },
-          "classList": [
-            "gap"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "体积小"
-          },
-          "classList": [
-            "tag"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "|"
-          },
-          "classList": [
-            "gap"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "一步直达"
-          },
-          "classList": [
-            "tag"
-          ]
+            "value": "会员主页"
+          }
         }
       ]
     },
     {
       "type": "text",
       "attr": {
-        "id": "desc",
-        "value": function () {return this.desc}
+        "value": "里程兑换"
       },
-      "id": "desc"
-    },
-    {
-      "type": "div",
-      "attr": {},
       "classList": [
-        "detail",
-        "detail-first"
-      ],
-      "children": [
-        {
-          "type": "text",
-          "attr": {
-            "value": "服务类型"
-          },
-          "classList": [
-            "detail-title"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": function () {return this.serviceType}
-          },
-          "classList": [
-            "detail-content"
-          ]
-        }
+        "title"
       ]
     },
     {
       "type": "div",
       "attr": {},
       "classList": [
-        "detail"
+        "part"
       ],
+      "repeat": {
+        "exp": function () {return this.mileages},
+        "value": "item"
+      },
       "children": [
         {
-          "type": "text",
+          "type": "image",
           "attr": {
-            "value": "主体信息"
-          },
-          "classList": [
-            "detail-title"
-          ]
+            "src": function () {return this.item.url}
+          }
         },
         {
-          "type": "text",
-          "attr": {
-            "value": function () {return this.subjectInfo}
-          },
+          "type": "div",
+          "attr": {},
           "classList": [
-            "detail-content"
+            "innerPart"
+          ],
+          "children": [
+            {
+              "type": "text",
+              "attr": {
+                "value": function () {return this.item.information}
+              }
+            },
+            {
+              "type": "text",
+              "attr": {},
+              "children": [
+                {
+                  "type": "span",
+                  "attr": {
+                    "value": function () {return this.item.count}
+                  },
+                  "classList": [
+                    "itemCount"
+                  ]
+                },
+                {
+                  "type": "span",
+                  "attr": {
+                    "value": "里程"
+                  }
+                }
+              ]
+            }
           ]
         }
       ]
-    },
-    {
-      "type": "input",
-      "attr": {
-        "type": "button",
-        "value": "创建快捷方式"
-      },
-      "classList": [
-        "btn"
-      ],
-      "events": {
-        "click": "createShortcut"
-      }
-    },
-    {
-      "type": "text",
-      "attr": {
-        "id": "footer",
-        "value": function () {return this.copyright}
-      },
-      "id": "footer"
     }
   ]
 }
 
 /***/ }),
 
-/***/ 147:
+/***/ 163:
 /***/ (function(module, exports) {
 
 module.exports = {
-  ".demo-page": {
-    "flexDirection": "column",
-    "alignItems": "center"
+  ".commonUserPage": {
+    "width": "100%",
+    "height": "100%",
+    "display": "flex",
+    "flexDirection": "column"
   },
-  "#icon": {
-    "marginTop": "90px",
-    "width": "134px",
-    "height": "134px",
-    "borderRadius": "10px",
+  ".pageTitle": {
+    "display": "flex",
+    "justifyContent": "center"
+  },
+  ".pageTitle>text": {
+    "fontSize": "38px",
+    "fontWeight": "bold",
+    "color": "#000000",
+    "_meta": {
+      "ruleDef": [
+        {
+          "t": "a",
+          "n": "class",
+          "i": false,
+          "a": "element",
+          "v": "pageTitle"
+        },
+        {
+          "t": "child"
+        },
+        {
+          "t": "t",
+          "n": "text"
+        }
+      ]
+    }
+  },
+  ".title": {
+    "fontSize": "38px",
+    "fontWeight": "bold"
+  },
+  ".part": {
+    "width": "100%",
+    "height": "200px",
     "borderTopWidth": "1px",
     "borderRightWidth": "1px",
     "borderBottomWidth": "1px",
     "borderLeftWidth": "1px",
     "borderStyle": "solid",
-    "borderTopColor": "#8d8d8d",
-    "borderRightColor": "#8d8d8d",
-    "borderBottomColor": "#8d8d8d",
-    "borderLeftColor": "#8d8d8d"
+    "borderTopColor": "#000000",
+    "borderRightColor": "#000000",
+    "borderBottomColor": "#000000",
+    "borderLeftColor": "#000000"
   },
-  "#name": {
-    "marginTop": "20px",
-    "fontSize": "36px",
-    "color": "#000000"
+  ".innerPart": {
+    "display": "flex",
+    "flexDirection": "column",
+    "justifyContent": "center",
+    "alignContent": "center"
   },
-  "#tags": {
-    "marginTop": "22px",
-    "alignItems": "center"
-  },
-  ".tag": {
-    "paddingLeft": "20px",
-    "paddingRight": "20px",
-    "fontSize": "28px",
-    "color": "#2a9700"
-  },
-  ".gap": {
-    "fontSize": "22px",
-    "color": "#b2b2b2"
-  },
-  "#desc": {
-    "width": "650px",
-    "marginTop": "40px",
-    "lineHeight": "35px",
-    "fontSize": "25px",
-    "color": "#8d8d8d"
-  },
-  ".detail": {
-    "width": "650px",
-    "height": "90px",
-    "borderBottomWidth": "1px",
-    "borderBottomColor": "#f0f0f0"
-  },
-  ".detail-first": {
-    "marginTop": "65px",
-    "borderTopWidth": "1px",
-    "borderTopColor": "#f0f0f0"
-  },
-  ".detail-title": {
-    "width": "160px",
-    "paddingLeft": "10px",
-    "fontSize": "25px",
-    "color": "#000000"
-  },
-  ".detail-content": {
-    "fontSize": "25px",
-    "color": "#8d8d8d"
-  },
-  ".btn": {
-    "width": "550px",
-    "height": "86px",
-    "marginTop": "75px",
-    "borderRadius": "43px",
-    "backgroundColor": "#09ba07",
-    "fontSize": "30px",
-    "color": "#ffffff"
-  },
-  "#footer": {
-    "width": "750px",
-    "position": "fixed",
-    "bottom": "55px",
-    "fontSize": "25px",
-    "color": "#8d8d8d",
-    "textAlign": "center"
+  ".itemCount": {
+    "color": "#F08121"
   }
 }
 
 /***/ }),
 
-/***/ 148:
+/***/ 164:
 /***/ (function(module, exports) {
 
 module.exports = function(module, exports, $app_require$){'use strict';
@@ -361,21 +262,8 @@ Object.defineProperty(exports, "__esModule", {
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 exports.default = {
-  protected: {
-    name: null,
-    icon: null
-  },
-  private: {
-    desc: '即点即用，让你省去下载安装的步骤，立即使用各类服务',
-    serviceType: '工具类',
-    subjectInfo: 'xxx有限公司',
-    copyright: ''
-  },
-  onInit: function onInit() {
-    this.$page.setTitleBar({ text: this.name });
-  },
-  createShortcut: function createShortcut() {
-    this.$app.$def.createShortcut();
+  data: {
+    mileages: [{ url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 699 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 39 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 500 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 300 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 320 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 39 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 500 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 300 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 320 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 39 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 500 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 300 }, { url: '/Common/vip.png', information: '3个月亚马逊Prime会员权益', count: 320 }]
   }
 };
 

@@ -63,17 +63,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 165);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 145:
+/***/ 165:
 /***/ (function(module, exports, __webpack_require__) {
 
-var $app_template$ = __webpack_require__(146)
-var $app_style$ = __webpack_require__(147)
-var $app_script$ = __webpack_require__(148)
+var $app_template$ = __webpack_require__(166)
+var $app_style$ = __webpack_require__(167)
+var $app_script$ = __webpack_require__(168)
 
 $app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
      $app_script$($app_module$, $app_exports$, $app_require$)
@@ -89,119 +89,46 @@ $app_bootstrap$('@app-component/index',{ packagerVersion: '0.0.5'})
 
 /***/ }),
 
-/***/ 146:
+/***/ 166:
 /***/ (function(module, exports) {
 
 module.exports = {
   "type": "div",
   "attr": {},
   "classList": [
-    "demo-page"
+    "orderPage"
   ],
   "children": [
     {
-      "type": "image",
-      "attr": {
-        "id": "icon",
-        "src": function () {return this.icon}
-      },
-      "id": "icon"
-    },
-    {
-      "type": "text",
-      "attr": {
-        "id": "name",
-        "value": function () {return this.name}
-      },
-      "id": "name"
-    },
-    {
-      "type": "div",
-      "attr": {
-        "id": "tags"
-      },
-      "id": "tags",
-      "children": [
-        {
-          "type": "text",
-          "attr": {
-            "value": "无安装"
-          },
-          "classList": [
-            "tag"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "|"
-          },
-          "classList": [
-            "gap"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "体积小"
-          },
-          "classList": [
-            "tag"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "|"
-          },
-          "classList": [
-            "gap"
-          ]
-        },
-        {
-          "type": "text",
-          "attr": {
-            "value": "一步直达"
-          },
-          "classList": [
-            "tag"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "attr": {
-        "id": "desc",
-        "value": function () {return this.desc}
-      },
-      "id": "desc"
-    },
-    {
       "type": "div",
       "attr": {},
       "classList": [
-        "detail",
-        "detail-first"
+        "pageTitle"
       ],
       "children": [
         {
+          "type": "image",
+          "attr": {
+            "src": "/Common/back.png"
+          },
+          "events": {
+            "click": "goBack"
+          }
+        },
+        {
           "type": "text",
           "attr": {
-            "value": "服务类型"
+            "value": "我的订单"
           },
           "classList": [
-            "detail-title"
+            "title"
           ]
         },
         {
           "type": "text",
           "attr": {
-            "value": function () {return this.serviceType}
-          },
-          "classList": [
-            "detail-content"
-          ]
+            "value": "开发票"
+          }
         }
       ]
     },
@@ -209,150 +136,172 @@ module.exports = {
       "type": "div",
       "attr": {},
       "classList": [
-        "detail"
+        "order"
       ],
       "children": [
         {
           "type": "text",
           "attr": {
-            "value": "主体信息"
-          },
-          "classList": [
-            "detail-title"
-          ]
+            "value": "已完成的订单"
+          }
         },
         {
-          "type": "text",
-          "attr": {
-            "value": function () {return this.subjectInfo}
-          },
+          "type": "div",
+          "attr": {},
           "classList": [
-            "detail-content"
+            "orderItem"
+          ],
+          "repeat": {
+            "exp": function () {return this.orderList},
+            "value": "item"
+          },
+          "children": [
+            {
+              "type": "text",
+              "attr": {
+                "value": function () {return this.item.carType}
+              }
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "item"
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/clock.png"
+                  },
+                  "style": {
+                    "width": "30px"
+                  }
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": function () {return this.item.time}
+                  }
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "item"
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "attr": {},
+                  "classList": [
+                    "dot",
+                    "greenDot"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": function () {return this.item.startAddress}
+                  }
+                }
+              ]
+            },
+            {
+              "type": "div",
+              "attr": {},
+              "classList": [
+                "item"
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "attr": {},
+                  "classList": [
+                    "dot",
+                    "orangeDot"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": function () {return this.item.endAddress}
+                  }
+                }
+              ]
+            }
           ]
         }
       ]
-    },
-    {
-      "type": "input",
-      "attr": {
-        "type": "button",
-        "value": "创建快捷方式"
-      },
-      "classList": [
-        "btn"
-      ],
-      "events": {
-        "click": "createShortcut"
-      }
-    },
-    {
-      "type": "text",
-      "attr": {
-        "id": "footer",
-        "value": function () {return this.copyright}
-      },
-      "id": "footer"
     }
   ]
 }
 
 /***/ }),
 
-/***/ 147:
+/***/ 167:
 /***/ (function(module, exports) {
 
 module.exports = {
-  ".demo-page": {
+  ".orderPage": {
+    "width": "100%",
+    "height": "100%",
+    "display": "flex",
     "flexDirection": "column",
-    "alignItems": "center"
+    "backgroundColor": "#E5E5E5"
   },
-  "#icon": {
-    "marginTop": "90px",
-    "width": "134px",
-    "height": "134px",
-    "borderRadius": "10px",
-    "borderTopWidth": "1px",
-    "borderRightWidth": "1px",
-    "borderBottomWidth": "1px",
-    "borderLeftWidth": "1px",
-    "borderStyle": "solid",
-    "borderTopColor": "#8d8d8d",
-    "borderRightColor": "#8d8d8d",
-    "borderBottomColor": "#8d8d8d",
-    "borderLeftColor": "#8d8d8d"
+  ".pageTitle": {
+    "display": "flex",
+    "justifyContent": "space-between",
+    "backgroundColor": "#ffffff"
   },
-  "#name": {
-    "marginTop": "20px",
-    "fontSize": "36px",
+  ".title": {
+    "fontSize": "38px",
+    "fontWeight": "bold",
     "color": "#000000"
   },
-  "#tags": {
-    "marginTop": "22px",
+  ".order": {
+    "display": "flex",
+    "flexDirection": "column",
+    "justifyContent": "center",
+    "alignContent": "center",
+    "width": "100%",
     "alignItems": "center"
   },
-  ".tag": {
-    "paddingLeft": "20px",
-    "paddingRight": "20px",
-    "fontSize": "28px",
-    "color": "#2a9700"
+  ".orderItem": {
+    "width": "100%",
+    "display": "flex",
+    "flexDirection": "column",
+    "justifyContent": "flex-start",
+    "backgroundColor": "#ffffff",
+    "marginBottom": "4px"
   },
-  ".gap": {
-    "fontSize": "22px",
-    "color": "#b2b2b2"
+  ".item": {
+    "display": "flex",
+    "justifyContent": "flex-start",
+    "alignItems": "center"
   },
-  "#desc": {
-    "width": "650px",
-    "marginTop": "40px",
-    "lineHeight": "35px",
-    "fontSize": "25px",
-    "color": "#8d8d8d"
+  ".dot": {
+    "width": "20px",
+    "height": "20px",
+    "borderRadius": "10px"
   },
-  ".detail": {
-    "width": "650px",
-    "height": "90px",
-    "borderBottomWidth": "1px",
-    "borderBottomColor": "#f0f0f0"
+  ".greenDot": {
+    "backgroundColor": "#46AF17"
   },
-  ".detail-first": {
-    "marginTop": "65px",
-    "borderTopWidth": "1px",
-    "borderTopColor": "#f0f0f0"
-  },
-  ".detail-title": {
-    "width": "160px",
-    "paddingLeft": "10px",
-    "fontSize": "25px",
-    "color": "#000000"
-  },
-  ".detail-content": {
-    "fontSize": "25px",
-    "color": "#8d8d8d"
-  },
-  ".btn": {
-    "width": "550px",
-    "height": "86px",
-    "marginTop": "75px",
-    "borderRadius": "43px",
-    "backgroundColor": "#09ba07",
-    "fontSize": "30px",
-    "color": "#ffffff"
-  },
-  "#footer": {
-    "width": "750px",
-    "position": "fixed",
-    "bottom": "55px",
-    "fontSize": "25px",
-    "color": "#8d8d8d",
-    "textAlign": "center"
+  ".orangeDot": {
+    "backgroundColor": "#F06405"
   }
 }
 
 /***/ }),
 
-/***/ 148:
+/***/ 168:
 /***/ (function(module, exports) {
 
-module.exports = function(module, exports, $app_require$){'use strict';
+module.exports = function(module, exports, $app_require$){"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -360,22 +309,18 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var _system = $app_require$("@app-module/system.router");
+
+var _system2 = _interopRequireDefault(_system);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
-  protected: {
-    name: null,
-    icon: null
+  data: {
+    orderList: [{ carType: "出租车", time: "2018年06月05日 12:00", startAddress: "华南农业大学", endAddress: "五山天天向上便利店" }, { carType: "出租车", time: "2018年06月05日 12:00", startAddress: "华南农业大学", endAddress: "五山天天向上便利店" }]
   },
-  private: {
-    desc: '即点即用，让你省去下载安装的步骤，立即使用各类服务',
-    serviceType: '工具类',
-    subjectInfo: 'xxx有限公司',
-    copyright: ''
-  },
-  onInit: function onInit() {
-    this.$page.setTitleBar({ text: this.name });
-  },
-  createShortcut: function createShortcut() {
-    this.$app.$def.createShortcut();
+  goBack: function goBack() {
+    _system2.default.back();
   }
 };
 

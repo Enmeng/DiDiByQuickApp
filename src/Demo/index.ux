@@ -1,4 +1,5 @@
 <import name="appointment-time" src="../components/appointmentTime"></import>
+<import name="user-panel" src="../components/userPanel"></import>
 <template>
         <div class="tutorial-page">
            <div class="title-information">
@@ -89,54 +90,7 @@
             </div>
            <!-- 用户面板 -->
             <div class="mask" show="{{visibility}}" @click="hidePanel">
-                <div class="userInformationPanel" style="padding-top:40px">
-                    <div class="part partUser">
-                      <image src="/Common/user.png" class="panel-image" style="width:100px;"></image>
-                      <text >134*****604</text>
-                    </div>
-                    <div class="part">
-                      <image src="/Common/normalUser.png" class="panel-image"></image>
-                      <text>普通用户 ></text>
-                    </div>
-                    <div class="part partList">
-                      <list>
-                        <list-item  type="productLeft" class="content-item">
-                          <image src="/Common/order.png" class="panel-image"></image>
-                          <text>订单</text>
-                        </list-item>
-                        <list-item type="productLeft" class="content-item">
-                          <image src="/Common/safe.png" class="panel-image"></image>
-                          <text>安全</text>
-                        </list-item>
-                        <list-item type="productLeft" class="content-item">
-                          <image src="/Common/wallet.png" class="panel-image"></image>
-                          <text>钱包</text>
-                        </list-item>
-                        <list-item type="productLeft" class="content-item"> 
-                          <image src="/Common/service.png" class="panel-image"></image>
-                          <text>客服</text>
-                        </list-item>
-                        <list-item type="productLeft" class="content-item">
-                          <image src="/Common/setting.png" class="panel-image"></image>
-                          <text>设置</text>
-                        </list-item>
-                      </list>
-                    </div>
-                    <div class="part partBottom">
-                       <div class="btm">
-                          <image src="/Common/gift.png" class="panel-image"></image>
-                          <text>推荐有奖</text>
-                       </div>
-                       <div class="btm">
-                          <image src="/Common/worker.png" class="panel-image"></image>
-                          <text>车主招募</text>
-                       </div>
-                       <div class="btm">
-                          <image src="/Common/student.png" class="panel-image"></image>
-                          <text>学生中心</text>
-                       </div>
-                    </div>
-                  </div>
+              <user-panel></user-panel>
                </div>
             
                <div class="appointmentTimeMask" show="{{appointmentTimeV}}" @click="appointmentTimeVHide">
@@ -155,11 +109,7 @@
           width:100%;
           height:100%;
         }
-        /* .title-information{
-          display:flex;
-          flex-direction: column;
-      4   align-items: center;
-        } */
+      
         .title-information-item{
           width:300px;
         }
@@ -227,47 +177,7 @@
           align-content:center;
           
         }
-        .userInformationPanel{
-          width:70%;
-          height:100%;
-          top:0px;
-          bottom:0px;
-          left:0px;
-          /* position:fixed; */
-          background-color:#fff;
-          display:flex;
-          justify-content:center;
-          align-items: center;
-          flex-direction:column;
-          justify-content:space-between; 
-          align-content:space-around;
-        }
-        .part{
-          margin-bottom:50px;
-        }
-        .partUser{
-          display:flex;
-          justify-content:center;
-          align-items: center;
-          flex-direction:column;
-        }
-        .partList{
-          margin-left:60px;
-      
-        }
-        .content-item{
-           padding-bottom:50px;
-        }
-        .partBottom{
-          margin-bottom:20px;
-          display:flex;
-          justify-content:center;
-          align-items: center;
-          justify-content:space-between; 
-        }
-        .btm{
-          width:20%;
-        }
+        
         .nowTime{
           border-radius:30px;
           
@@ -280,12 +190,6 @@
           background-color:#fff;
           position:fixed;
         }
-        /* .otherPage{
-          display:flex;
-          justify-content:center;
-          align-items:center;
-          visibility:hidden;
-        } */
       </style>
       <!-- <script src="Common/zrender.js"></script> -->
       <script>

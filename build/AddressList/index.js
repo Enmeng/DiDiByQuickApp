@@ -63,17 +63,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 145);
+/******/ 	return __webpack_require__(__webpack_require__.s = 149);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 145:
+/***/ 149:
 /***/ (function(module, exports, __webpack_require__) {
 
-var $app_template$ = __webpack_require__(146)
-var $app_style$ = __webpack_require__(147)
-var $app_script$ = __webpack_require__(148)
+var $app_template$ = __webpack_require__(150)
+var $app_style$ = __webpack_require__(151)
+var $app_script$ = __webpack_require__(152)
 
 $app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
      $app_script$($app_module$, $app_exports$, $app_require$)
@@ -89,7 +89,7 @@ $app_bootstrap$('@app-component/index',{ packagerVersion: '0.0.5'})
 
 /***/ }),
 
-/***/ 146:
+/***/ 150:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -289,7 +289,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 147:
+/***/ 151:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -333,7 +333,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 148:
+/***/ 152:
 /***/ (function(module, exports) {
 
 module.exports = function(module, exports, $app_require$){'use strict';
@@ -371,7 +371,7 @@ exports.default = {
 
     var that = this;
     _system2.default.fetch({
-      url: 'http://172.17.176.49:3000/city',
+      url: 'http://10.1.29.16:3000/city',
       success: function success(response) {
         that.listPro = [].concat(JSON.parse(response.data));
       },
@@ -385,7 +385,7 @@ exports.default = {
   },
   selectProChange: function selectProChange(res) {
     this.selectPro = res.newValue;
-    var url = 'http://172.17.176.49:3000/city' + '?currentPro=' + this.selectPro;
+    var url = 'http://10.1.29.16:3000/city' + '?currentPro=' + this.selectPro;
     var that = this;
     _system2.default.fetch({
       url: url,
@@ -399,7 +399,7 @@ exports.default = {
   },
   selectCityChange: function selectCityChange(res) {
     this.selectCity = res.newValue;
-    var url = 'http://172.17.176.49:3000/city' + '?currentPro=' + this.selectPro + '&&currentCity=' + this.selectCity;
+    var url = 'http://10.1.29.16:3000/city' + '?currentPro=' + this.selectPro + '&&currentCity=' + this.selectCity;
     var that = this;
     _system2.default.fetch({
       url: url,

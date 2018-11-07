@@ -1,0 +1,93 @@
+<template>
+    <div class="orderPage">
+        <div class="pageTitle">
+            <image @click="goBack" src="/Common/back.png"></image>
+            <text class="title">我的订单</text>
+            <text>开发票</text>
+        </div>
+        <div class="order">
+            <text>已完成的订单</text>
+            <div class="orderItem" for="item in orderList">
+               <text>{{item.carType}}</text>
+               <div class="item">
+                  <image src="/Common/clock.png" style="width:30px;"></image>
+                  <text>{{item.time}}</text>
+               </div>
+               <div class="item">
+                  <text class="dot greenDot"></text>
+                  <text>{{item.startAddress}}</text>
+               </div>
+               <div class="item">
+                  <text class="dot orangeDot"></text>
+                  <text>{{item.endAddress}}</text>
+               </div>
+           </div>
+       </div>
+    </div>
+</template>
+<style>
+    .orderPage{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #E5E5E5;
+    }
+    .pageTitle{
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+
+    }
+    .title{
+        font-size: 38px;
+        font-weight: bold;
+        color: #000;
+    }
+    .order{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        align-items:center;
+    }
+    .orderItem{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: #fff;
+        margin-bottom: 4px;
+    }
+    .item{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .dot{
+        width: 20px;
+        height: 20px;
+        border-radius: 10px;
+    }
+    .greenDot{
+        background-color: #46AF17
+    }
+    .orangeDot{
+        background-color: #F06405;
+    }
+</style>
+<script>
+    import router from '@system.router';
+    export default{
+        data:{
+            orderList:[
+                {carType:"出租车",time:"2018年06月05日 12:00",startAddress:"华南农业大学",endAddress:"五山天天向上便利店"},
+                {carType:"出租车",time:"2018年06月05日 12:00",startAddress:"华南农业大学",endAddress:"五山天天向上便利店"},
+            ]
+        },
+        goBack(){
+            router.back();
+        }
+    }
+</script>

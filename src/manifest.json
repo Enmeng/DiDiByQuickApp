@@ -40,6 +40,12 @@
       },
       "NextCanvas":{
         "component":"index"
+      },
+      "CommonUser":{
+        "component":"index"
+      },
+      "Order":{
+        "component":"index"
       }
     }
   },

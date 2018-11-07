@@ -89,7 +89,7 @@
         var that=this;
         fetch.fetch({
         // url: 'http://10.1.29.16:3000/city',
-        url:'http://172.17.176.49:3000/city',
+        url:'http://10.1.29.16:3000/city',
         success: function (response) {
             that.listPro=[].concat(JSON.parse(response.data));
         },
@@ -103,7 +103,7 @@
       },
       selectProChange:function(res){
         this.selectPro=res.newValue;
-        var url='http://172.17.176.49:3000/city'+'?currentPro='+this.selectPro;
+        var url='http://10.1.29.16:3000/city'+'?currentPro='+this.selectPro;
         var that=this;
         fetch.fetch({
         url: url,
@@ -117,7 +117,7 @@
       },
       selectCityChange:function(res){
         this.selectCity=res.newValue;
-        var url='http://172.17.176.49:3000/city'+'?currentPro='+this.selectPro+'&&currentCity='+this.selectCity;
+        var url='http://10.1.29.16:3000/city'+'?currentPro='+this.selectPro+'&&currentCity='+this.selectCity;
         var that=this;
         fetch.fetch({
           url:url,
@@ -133,13 +133,6 @@
         this.selectCounty=res.newValue;
       },
       onHide:function(){
-      // 页面被切换隐藏时，将要传递的数据对象写入global数据
-      // this.$app.$data.AddressList = {
-      //   gotoPage: '/DemeDetail',
-      //   params: {
-      //     msg: this.selectCity
-      //   }
-      // }
     }
     }
   </script>

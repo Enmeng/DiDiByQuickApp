@@ -1,0 +1,126 @@
+<template>
+       <div class="userInformationPanel" style="padding-top:40px" @click="panelClickHandler">
+            <div class="part partUser">
+              <image src="/Common/user.png" class="panel-image" style="width:100px;"></image>
+              <text >134*****604</text>
+            </div>
+            <div class="part commonPart" @click="GoToUserPage">
+              <image src="/Common/normalUser.png" class="panel-image"></image>
+              <text>普通用户 ></text>
+            </div>
+            <div class="part partList">
+              <list>
+                <list-item  type="productLeft" class="content-item" @click="GoToOrderPage"> 
+                  <image src="/Common/order.png" class="panel-image"></image>
+                  <text>订单</text>
+                </list-item>
+                <list-item type="productLeft" class="content-item">
+                  <image src="/Common/safe.png" class="panel-image"></image>
+                  <text>安全</text>
+                </list-item>
+                <list-item type="productLeft" class="content-item">
+                  <image src="/Common/wallet.png" class="panel-image"></image>
+                  <text>钱包</text>
+                </list-item>
+                <list-item type="productLeft" class="content-item"> 
+                  <image src="/Common/service.png" class="panel-image"></image>
+                  <text>客服</text>
+                </list-item>
+                <list-item type="productLeft" class="content-item">
+                  <image src="/Common/setting.png" class="panel-image"></image>
+                  <text>设置</text>
+                </list-item>
+              </list>
+            </div>
+            <div class="part partBottom">
+               <div class="btm">
+                  <image src="/Common/gift.png" class="panel-image"></image>
+                  <text>推荐有奖</text>
+               </div>
+               <div class="btm">
+                  <image src="/Common/worker.png" class="panel-image"></image>
+                  <text>车主招募</text>
+               </div>
+               <div class="btm">
+                  <image src="/Common/student.png" class="panel-image"></image>
+                  <text>学生中心</text>
+               </div>
+            </div>
+            <div>
+                <text class="divider"></text>
+            </div>
+            <div>
+                <text>法律条款与计价规则></text>
+            </div>
+       </div>
+
+</template>
+<style>
+     .userInformationPanel{
+          width:70%;
+          height:100%;
+          top:0px;
+          bottom:0px;
+          left:0px;
+          background-color:#fff;
+          display:flex;
+          flex-direction:column;
+          justify-content:space-between; 
+          align-content:space-around;
+        }
+        .commonPart{
+          margin-left:140px;
+        }
+        .partUser{
+          display:flex;
+          justify-content:center;
+          align-items: center;
+          flex-direction:column;
+        }
+        .partList{
+          margin-left:60px;
+      
+        }
+        .panel-image{
+            width:50px;
+        }
+        .content-item{
+           padding-bottom:50px;
+        }
+        .partBottom{
+          display:flex;
+          align-content: flex-start;
+          justify-content:space-between; 
+        }
+        .btm{
+          width:25%;
+        }
+        .divider{
+            width:100%;
+            height: 1px;
+            background-color:rgba(0, 0, 0, 1);
+        }
+</style>
+<script>
+    import router from '@system.router';
+    export default{
+         data(){
+             return {
+
+             }
+         },
+         panelClickHandler(){
+             
+         },
+         GoToUserPage(){
+             router.push({
+               uri:'/CommonUser'
+             })
+         },
+         GoToOrderPage(){
+           router.push({
+             uri:'/Order'
+           })
+         }
+    }
+</script>

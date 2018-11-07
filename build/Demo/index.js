@@ -72,9 +72,10 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(130)
-var $app_template$ = __webpack_require__(134)
-var $app_style$ = __webpack_require__(135)
-var $app_script$ = __webpack_require__(136)
+__webpack_require__(134)
+var $app_template$ = __webpack_require__(138)
+var $app_style$ = __webpack_require__(139)
+var $app_script$ = __webpack_require__(140)
 
 $app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
      $app_script$($app_module$, $app_exports$, $app_require$)
@@ -461,6 +462,443 @@ exports.default = {
 /***/ }),
 
 /***/ 134:
+/***/ (function(module, exports, __webpack_require__) {
+
+var $app_template$ = __webpack_require__(135)
+var $app_style$ = __webpack_require__(136)
+var $app_script$ = __webpack_require__(137)
+
+$app_define$('@app-component/user-panel', [], function($app_require$, $app_exports$, $app_module$){
+     $app_script$($app_module$, $app_exports$, $app_require$)
+     if ($app_exports$.__esModule && $app_exports$.default) {
+            $app_module$.exports = $app_exports$.default
+        }
+     $app_module$.exports.template = $app_template$
+     $app_module$.exports.style = $app_style$
+})
+
+
+/***/ }),
+
+/***/ 135:
+/***/ (function(module, exports) {
+
+module.exports = {
+  "type": "div",
+  "attr": {},
+  "classList": [
+    "userInformationPanel"
+  ],
+  "style": {
+    "paddingTop": "40px"
+  },
+  "events": {
+    "click": "panelClickHandler"
+  },
+  "children": [
+    {
+      "type": "div",
+      "attr": {},
+      "classList": [
+        "part",
+        "partUser"
+      ],
+      "children": [
+        {
+          "type": "image",
+          "attr": {
+            "src": "/Common/user.png"
+          },
+          "classList": [
+            "panel-image"
+          ],
+          "style": {
+            "width": "100px"
+          }
+        },
+        {
+          "type": "text",
+          "attr": {
+            "value": "134*****604"
+          }
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "attr": {},
+      "classList": [
+        "part",
+        "commonPart"
+      ],
+      "events": {
+        "click": "GoToUserPage"
+      },
+      "children": [
+        {
+          "type": "image",
+          "attr": {
+            "src": "/Common/normalUser.png"
+          },
+          "classList": [
+            "panel-image"
+          ]
+        },
+        {
+          "type": "text",
+          "attr": {
+            "value": "普通用户 >"
+          }
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "attr": {},
+      "classList": [
+        "part",
+        "partList"
+      ],
+      "children": [
+        {
+          "type": "list",
+          "attr": {},
+          "children": [
+            {
+              "type": "list-item",
+              "attr": {
+                "type": "productLeft"
+              },
+              "classList": [
+                "content-item"
+              ],
+              "events": {
+                "click": "GoToOrderPage"
+              },
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/order.png"
+                  },
+                  "classList": [
+                    "panel-image"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "订单"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "list-item",
+              "attr": {
+                "type": "productLeft"
+              },
+              "classList": [
+                "content-item"
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/safe.png"
+                  },
+                  "classList": [
+                    "panel-image"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "安全"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "list-item",
+              "attr": {
+                "type": "productLeft"
+              },
+              "classList": [
+                "content-item"
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/wallet.png"
+                  },
+                  "classList": [
+                    "panel-image"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "钱包"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "list-item",
+              "attr": {
+                "type": "productLeft"
+              },
+              "classList": [
+                "content-item"
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/service.png"
+                  },
+                  "classList": [
+                    "panel-image"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "客服"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "list-item",
+              "attr": {
+                "type": "productLeft"
+              },
+              "classList": [
+                "content-item"
+              ],
+              "children": [
+                {
+                  "type": "image",
+                  "attr": {
+                    "src": "/Common/setting.png"
+                  },
+                  "classList": [
+                    "panel-image"
+                  ]
+                },
+                {
+                  "type": "text",
+                  "attr": {
+                    "value": "设置"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "attr": {},
+      "classList": [
+        "part",
+        "partBottom"
+      ],
+      "children": [
+        {
+          "type": "div",
+          "attr": {},
+          "classList": [
+            "btm"
+          ],
+          "children": [
+            {
+              "type": "image",
+              "attr": {
+                "src": "/Common/gift.png"
+              },
+              "classList": [
+                "panel-image"
+              ]
+            },
+            {
+              "type": "text",
+              "attr": {
+                "value": "推荐有奖"
+              }
+            }
+          ]
+        },
+        {
+          "type": "div",
+          "attr": {},
+          "classList": [
+            "btm"
+          ],
+          "children": [
+            {
+              "type": "image",
+              "attr": {
+                "src": "/Common/worker.png"
+              },
+              "classList": [
+                "panel-image"
+              ]
+            },
+            {
+              "type": "text",
+              "attr": {
+                "value": "车主招募"
+              }
+            }
+          ]
+        },
+        {
+          "type": "div",
+          "attr": {},
+          "classList": [
+            "btm"
+          ],
+          "children": [
+            {
+              "type": "image",
+              "attr": {
+                "src": "/Common/student.png"
+              },
+              "classList": [
+                "panel-image"
+              ]
+            },
+            {
+              "type": "text",
+              "attr": {
+                "value": "学生中心"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "attr": {},
+      "children": [
+        {
+          "type": "text",
+          "attr": {},
+          "classList": [
+            "divider"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "div",
+      "attr": {},
+      "children": [
+        {
+          "type": "text",
+          "attr": {
+            "value": "法律条款与计价规则>"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+/***/ }),
+
+/***/ 136:
+/***/ (function(module, exports) {
+
+module.exports = {
+  ".userInformationPanel": {
+    "width": "70%",
+    "height": "100%",
+    "top": "0px",
+    "bottom": "0px",
+    "left": "0px",
+    "backgroundColor": "#ffffff",
+    "display": "flex",
+    "flexDirection": "column",
+    "justifyContent": "space-between",
+    "alignContent": "space-around"
+  },
+  ".commonPart": {
+    "marginLeft": "140px"
+  },
+  ".partUser": {
+    "display": "flex",
+    "justifyContent": "center",
+    "alignItems": "center",
+    "flexDirection": "column"
+  },
+  ".partList": {
+    "marginLeft": "60px"
+  },
+  ".panel-image": {
+    "width": "50px"
+  },
+  ".content-item": {
+    "paddingBottom": "50px"
+  },
+  ".partBottom": {
+    "display": "flex",
+    "alignContent": "flex-start",
+    "justifyContent": "space-between"
+  },
+  ".btm": {
+    "width": "25%"
+  },
+  ".divider": {
+    "width": "100%",
+    "height": "1px",
+    "backgroundColor": "rgba(0,0,0,1)"
+  }
+}
+
+/***/ }),
+
+/***/ 137:
+/***/ (function(module, exports) {
+
+module.exports = function(module, exports, $app_require$){'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _system = $app_require$('@app-module/system.router');
+
+var _system2 = _interopRequireDefault(_system);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    data: function data() {
+        return {};
+    },
+    panelClickHandler: function panelClickHandler() {},
+    GoToUserPage: function GoToUserPage() {
+        _system2.default.push({
+            uri: '/CommonUser'
+        });
+    },
+    GoToOrderPage: function GoToOrderPage() {
+        _system2.default.push({
+            uri: '/Order'
+        });
+    }
+};}
+
+/***/ }),
+
+/***/ 138:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -925,296 +1363,8 @@ module.exports = {
       },
       "children": [
         {
-          "type": "div",
-          "attr": {},
-          "classList": [
-            "userInformationPanel"
-          ],
-          "style": {
-            "paddingTop": "40px"
-          },
-          "children": [
-            {
-              "type": "div",
-              "attr": {},
-              "classList": [
-                "part",
-                "partUser"
-              ],
-              "children": [
-                {
-                  "type": "image",
-                  "attr": {
-                    "src": "/Common/user.png"
-                  },
-                  "classList": [
-                    "panel-image"
-                  ],
-                  "style": {
-                    "width": "100px"
-                  }
-                },
-                {
-                  "type": "text",
-                  "attr": {
-                    "value": "134*****604"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "div",
-              "attr": {},
-              "classList": [
-                "part"
-              ],
-              "children": [
-                {
-                  "type": "image",
-                  "attr": {
-                    "src": "/Common/normalUser.png"
-                  },
-                  "classList": [
-                    "panel-image"
-                  ]
-                },
-                {
-                  "type": "text",
-                  "attr": {
-                    "value": "普通用户 >"
-                  }
-                }
-              ]
-            },
-            {
-              "type": "div",
-              "attr": {},
-              "classList": [
-                "part",
-                "partList"
-              ],
-              "children": [
-                {
-                  "type": "list",
-                  "attr": {},
-                  "children": [
-                    {
-                      "type": "list-item",
-                      "attr": {
-                        "type": "productLeft"
-                      },
-                      "classList": [
-                        "content-item"
-                      ],
-                      "children": [
-                        {
-                          "type": "image",
-                          "attr": {
-                            "src": "/Common/order.png"
-                          },
-                          "classList": [
-                            "panel-image"
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "attr": {
-                            "value": "订单"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "list-item",
-                      "attr": {
-                        "type": "productLeft"
-                      },
-                      "classList": [
-                        "content-item"
-                      ],
-                      "children": [
-                        {
-                          "type": "image",
-                          "attr": {
-                            "src": "/Common/safe.png"
-                          },
-                          "classList": [
-                            "panel-image"
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "attr": {
-                            "value": "安全"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "list-item",
-                      "attr": {
-                        "type": "productLeft"
-                      },
-                      "classList": [
-                        "content-item"
-                      ],
-                      "children": [
-                        {
-                          "type": "image",
-                          "attr": {
-                            "src": "/Common/wallet.png"
-                          },
-                          "classList": [
-                            "panel-image"
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "attr": {
-                            "value": "钱包"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "list-item",
-                      "attr": {
-                        "type": "productLeft"
-                      },
-                      "classList": [
-                        "content-item"
-                      ],
-                      "children": [
-                        {
-                          "type": "image",
-                          "attr": {
-                            "src": "/Common/service.png"
-                          },
-                          "classList": [
-                            "panel-image"
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "attr": {
-                            "value": "客服"
-                          }
-                        }
-                      ]
-                    },
-                    {
-                      "type": "list-item",
-                      "attr": {
-                        "type": "productLeft"
-                      },
-                      "classList": [
-                        "content-item"
-                      ],
-                      "children": [
-                        {
-                          "type": "image",
-                          "attr": {
-                            "src": "/Common/setting.png"
-                          },
-                          "classList": [
-                            "panel-image"
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "attr": {
-                            "value": "设置"
-                          }
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "div",
-              "attr": {},
-              "classList": [
-                "part",
-                "partBottom"
-              ],
-              "children": [
-                {
-                  "type": "div",
-                  "attr": {},
-                  "classList": [
-                    "btm"
-                  ],
-                  "children": [
-                    {
-                      "type": "image",
-                      "attr": {
-                        "src": "/Common/gift.png"
-                      },
-                      "classList": [
-                        "panel-image"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "attr": {
-                        "value": "推荐有奖"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "div",
-                  "attr": {},
-                  "classList": [
-                    "btm"
-                  ],
-                  "children": [
-                    {
-                      "type": "image",
-                      "attr": {
-                        "src": "/Common/worker.png"
-                      },
-                      "classList": [
-                        "panel-image"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "attr": {
-                        "value": "车主招募"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "div",
-                  "attr": {},
-                  "classList": [
-                    "btm"
-                  ],
-                  "children": [
-                    {
-                      "type": "image",
-                      "attr": {
-                        "src": "/Common/student.png"
-                      },
-                      "classList": [
-                        "panel-image"
-                      ]
-                    },
-                    {
-                      "type": "text",
-                      "attr": {
-                        "value": "学生中心"
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
+          "type": "user-panel",
+          "attr": {}
         }
       ]
     },
@@ -1255,7 +1405,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 135:
+/***/ 139:
 /***/ (function(module, exports) {
 
 module.exports = {
@@ -1337,43 +1487,6 @@ module.exports = {
     "justifyContent": "center",
     "alignContent": "center"
   },
-  ".userInformationPanel": {
-    "width": "70%",
-    "height": "100%",
-    "top": "0px",
-    "bottom": "0px",
-    "left": "0px",
-    "backgroundColor": "#ffffff",
-    "display": "flex",
-    "justifyContent": "space-between",
-    "alignItems": "center",
-    "flexDirection": "column",
-    "alignContent": "space-around"
-  },
-  ".part": {
-    "marginBottom": "50px"
-  },
-  ".partUser": {
-    "display": "flex",
-    "justifyContent": "center",
-    "alignItems": "center",
-    "flexDirection": "column"
-  },
-  ".partList": {
-    "marginLeft": "60px"
-  },
-  ".content-item": {
-    "paddingBottom": "50px"
-  },
-  ".partBottom": {
-    "marginBottom": "20px",
-    "display": "flex",
-    "justifyContent": "space-between",
-    "alignItems": "center"
-  },
-  ".btm": {
-    "width": "20%"
-  },
   ".nowTime": {
     "borderRadius": "30px"
   },
@@ -1389,7 +1502,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 136:
+/***/ 140:
 /***/ (function(module, exports) {
 
 module.exports = function(module, exports, $app_require$){'use strict';
