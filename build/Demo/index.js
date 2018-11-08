@@ -601,6 +601,9 @@ module.exports = {
               "classList": [
                 "content-item"
               ],
+              "events": {
+                "click": "GoToSecurityCenterPage"
+              },
               "children": [
                 {
                   "type": "image",
@@ -870,7 +873,7 @@ module.exports = {
 module.exports = function(module, exports, $app_require$){'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _system = $app_require$('@app-module/system.router');
@@ -880,20 +883,25 @@ var _system2 = _interopRequireDefault(_system);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    data: function data() {
-        return {};
-    },
-    panelClickHandler: function panelClickHandler() {},
-    GoToUserPage: function GoToUserPage() {
-        _system2.default.push({
-            uri: '/CommonUser'
-        });
-    },
-    GoToOrderPage: function GoToOrderPage() {
-        _system2.default.push({
-            uri: '/Order'
-        });
-    }
+  data: function data() {
+    return {};
+  },
+  panelClickHandler: function panelClickHandler() {},
+  GoToUserPage: function GoToUserPage() {
+    _system2.default.push({
+      uri: '/CommonUser'
+    });
+  },
+  GoToOrderPage: function GoToOrderPage() {
+    _system2.default.push({
+      uri: '/Order'
+    });
+  },
+  GoToSecurityCenterPage: function GoToSecurityCenterPage() {
+    _system2.default.push({
+      uri: '/SecurityCenter'
+    });
+  }
 };}
 
 /***/ }),

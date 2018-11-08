@@ -1,7 +1,7 @@
 <template>
     <div class="orderPage">
         <div class="pageTitle">
-            <image @click="goBack" src="/Common/back.png"></image>
+            <image @click="goBack" src="/Common/back.png" style="width:60px;"></image>
             <text class="title">我的订单</text>
             <text>开发票</text>
         </div>

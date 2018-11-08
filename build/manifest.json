@@ -63,6 +63,9 @@
       },
       "Order": {
         "component": "index"
+      },
+      "SecurityCenter": {
+        "component": "index"
       }
     }
   },

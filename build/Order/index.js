@@ -113,6 +113,9 @@ module.exports = {
           },
           "events": {
             "click": "goBack"
+          },
+          "style": {
+            "width": "60px"
           }
         },
         {

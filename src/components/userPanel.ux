@@ -14,7 +14,7 @@
                   <image src="/Common/order.png" class="panel-image"></image>
                   <text>订单</text>
                 </list-item>
-                <list-item type="productLeft" class="content-item">
+                <list-item type="productLeft" class="content-item" @click="GoToSecurityCenterPage">
                   <image src="/Common/safe.png" class="panel-image"></image>
                   <text>安全</text>
                 </list-item>
@@ -120,6 +120,11 @@
          GoToOrderPage(){
            router.push({
              uri:'/Order'
+           })
+         },
+         GoToSecurityCenterPage(){
+           router.push({
+             uri:'/SecurityCenter'
            })
          }
     }
