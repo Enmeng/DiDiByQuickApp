@@ -1,0 +1,182 @@
+<template>
+    <div class="walletPage">
+        <div class="title">
+            <image src="/Common/back.png" style="width:60px;margin-top:20px;" @click="goBack"></image>
+            <text>我的钱包</text>
+        </div>
+        <div class="content">
+            <div class="walletItem" for="item in walletList">
+                <text class="walletItemTitle">{{item.title}}</text>
+                <div class="part" for="partItem in item.part">
+                    <div class="part1">
+                        <div class="partItem1">
+                            <image src="{{partItem.src}}" style="width:30px;background-color:goldenrod;"></image>
+                            <text>{{partItem.text}}</text>
+                        </div>
+                        <div class="partItem2">
+                            <text>{{partItem.other}}</text>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="card">
+               <div class="cardTitle">
+                   <text class="cardMarker">卡</text>
+                   <text>查看全部</text>
+               </div>
+               <div class="cardItem" for="item in cardList" style="background-color:{{item.backgroundColor}};">
+                   <div class="cardPart1">
+                       <div class="cardItemTitle">
+                           <image src="{{item.src}}" style="width:30px;"></image>
+                           <text>{{item.title}}</text>
+                       </div>
+                       <text>{{item.detail}}</text>
+                   </div>
+                   <div class="cardPart2">
+                       <text>{{item.counter}}</text>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    .walletPage{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color:#E5E5E5;
+    }
+    .title{
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        text-align: center;
+    }
+    .title>text{
+        font-size: 38px;
+        font-weight: bold;
+        color: #000;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        margin-top: 120px;
+        width: 100%;
+        /* height: 100%; */
+    }
+    .walletItem{
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        margin-top: 10px;
+    }
+    .walletItemTitle{
+        font-size:38px;
+        font-weight: bold;
+        color:#000;
+    }
+    .part{
+        width: 100%;
+        height: 120px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .part1{
+        display: flex;
+        justify-content: space-between;
+    }
+    .partItem1{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .divider{
+        width: 100%;
+        height: 2px;
+        background-color: #E5E5E5;
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        background-color: #fff;
+        margin-top: 10px;
+    }
+    .cardTitle{
+        display: flex;
+        justify-content: space-between;
+    }
+    .cardTitle>.cardMarker{
+        font-size:38px;
+        font-weight: bold;
+        color:#000;
+    }
+    .cardItem{
+        display: flex;
+        justify-content: space-between;
+        width: 90%;
+        padding:20px;
+        height: 200px;
+        margin-left: 40px;
+        margin-bottom:10px;
+    }
+    .cardPart1{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .cardItemTitle{
+        display: flex;
+    }
+</style>
+<script>
+    export default{
+        data:{
+            walletList:[
+                {
+                    title:"余额",
+                    part:[
+                        {src:"/Common/Wallet/piggy-bank.png",text:"账户余额",other:"0.00元"},
+                        {src:"/Common/Wallet/money_1.png",text:"特惠返利",other:"0.00元"},
+                        {src:"/Common/Wallet/money.png",text:"理财余额",other:"立即查看"},
+                        {src:"/Common/Wallet/easy_integration.png",text:"我的积分",other:"4个"},
+                        ]
+                },
+                {
+                    title:"支付方式",
+                    part:[
+                        {src:"/Common/Wallet/invoice.png",text:"开通免密，下车即走",other:"立即开通"}
+                        ]
+                },
+                {
+                    title:"券",
+                    part:[
+                        {src:"/Common/Wallet/TrainTicket.png",text:"车票",other:"去购买"}
+                        ]
+                },
+                {
+                    title:"票据",
+                    part:[
+                        {src:"/Common/Wallet/Ticket.png",text:"发票（发票，值得信赖的报销助手）",other:"开发票"}
+                        ]
+                },
+                {
+                    title:"保险",
+                    part:[
+                        {src:"/Common/Wallet/insurance.png",text:"只为平安",other:"买保险"}
+                        ]
+                }
+            ],
+            cardList:[
+                {backgroundColor:"#486779",src:"/Common/vip.png",title:"专车出行卡",detail:"仅限专车使用",counter:"0.00元"},
+                {backgroundColor:"#D8D8D8",src:"/Common/vip.png",title:"专车出行卡",detail:"仅限专车使用",counter:"0.00元"},
+            ]
+        }
+    }
+</script>

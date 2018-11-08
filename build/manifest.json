@@ -66,6 +66,9 @@
       },
       "SecurityCenter": {
         "component": "index"
+      },
+      "Wallet": {
+        "component": "index"
       }
     }
   },

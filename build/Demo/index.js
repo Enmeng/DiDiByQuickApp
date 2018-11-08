@@ -630,6 +630,9 @@ module.exports = {
               "classList": [
                 "content-item"
               ],
+              "events": {
+                "click": "GoToWalletPage"
+              },
               "children": [
                 {
                   "type": "image",
@@ -900,6 +903,11 @@ exports.default = {
   GoToSecurityCenterPage: function GoToSecurityCenterPage() {
     _system2.default.push({
       uri: '/SecurityCenter'
+    });
+  },
+  GoToWalletPage: function GoToWalletPage() {
+    _system2.default.push({
+      uri: '/Wallet'
     });
   }
 };}

@@ -18,7 +18,7 @@
                   <image src="/Common/safe.png" class="panel-image"></image>
                   <text>安全</text>
                 </list-item>
-                <list-item type="productLeft" class="content-item">
+                <list-item type="productLeft" class="content-item" @click="GoToWalletPage">
                   <image src="/Common/wallet.png" class="panel-image"></image>
                   <text>钱包</text>
                 </list-item>
@@ -125,6 +125,11 @@
          GoToSecurityCenterPage(){
            router.push({
              uri:'/SecurityCenter'
+           })
+         },
+         GoToWalletPage(){
+           router.push({
+             uri:'/Wallet'
            })
          }
     }
