@@ -136,6 +136,7 @@
     }
 </style>
 <script>
+    import router from '@system.router'
     export default{
         data:{
             walletList:[
@@ -177,6 +178,9 @@
                 {backgroundColor:"#486779",src:"/Common/vip.png",title:"专车出行卡",detail:"仅限专车使用",counter:"0.00元"},
                 {backgroundColor:"#D8D8D8",src:"/Common/vip.png",title:"专车出行卡",detail:"仅限专车使用",counter:"0.00元"},
             ]
+        },
+        goBack(){
+            router.back();
         }
     }
 </script>

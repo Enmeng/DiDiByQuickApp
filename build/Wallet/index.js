@@ -487,6 +487,12 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
+var _system = $app_require$("@app-module/system.router");
+
+var _system2 = _interopRequireDefault(_system);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 exports.default = {
     data: {
         walletList: [{
@@ -506,6 +512,9 @@ exports.default = {
             part: [{ src: "/Common/Wallet/insurance.png", text: "只为平安", other: "买保险" }]
         }],
         cardList: [{ backgroundColor: "#486779", src: "/Common/vip.png", title: "专车出行卡", detail: "仅限专车使用", counter: "0.00元" }, { backgroundColor: "#D8D8D8", src: "/Common/vip.png", title: "专车出行卡", detail: "仅限专车使用", counter: "0.00元" }]
+    },
+    goBack: function goBack() {
+        _system2.default.back();
     }
 };
 
