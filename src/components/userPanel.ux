@@ -22,18 +22,18 @@
                   <image src="/Common/wallet.png" class="panel-image"></image>
                   <text>钱包</text>
                 </list-item>
-                <list-item type="productLeft" class="content-item"> 
+                <list-item type="productLeft" class="content-item" @click="GoToCustomService"> 
                   <image src="/Common/service.png" class="panel-image"></image>
                   <text>客服</text>
                 </list-item>
-                <list-item type="productLeft" class="content-item">
+                <list-item type="productLeft" class="content-item" @click="GoToSetting">
                   <image src="/Common/setting.png" class="panel-image"></image>
                   <text>设置</text>
                 </list-item>
               </list>
             </div>
             <div class="part partBottom">
-               <div class="btm">
+               <div class="btm" @click="GoToRecommendation">
                   <image src="/Common/gift.png" class="panel-image"></image>
                   <text>推荐有奖</text>
                </div>
@@ -49,7 +49,7 @@
             <div>
                 <text class="divider"></text>
             </div>
-            <div>
+            <div class="lowTip">
                 <text>法律条款与计价规则></text>
             </div>
        </div>
@@ -65,11 +65,12 @@
           background-color:#fff;
           display:flex;
           flex-direction:column;
-          justify-content:space-between; 
+          justify-content:center; 
           align-content:space-around;
         }
         .commonPart{
           margin-left:140px;
+          padding: 30px;
         }
         .partUser{
           display:flex;
@@ -79,7 +80,7 @@
         }
         .partList{
           margin-left:60px;
-      
+          margin-top: 100px;
         }
         .panel-image{
             width:50px;
@@ -91,14 +92,20 @@
           display:flex;
           align-content: flex-start;
           justify-content:space-between; 
+          margin-top: -200px;
         }
         .btm{
-          width:25%;
+          width:15%;
+          display: flex;
+          flex-direction: column;
         }
         .divider{
             width:100%;
             height: 1px;
             background-color:rgba(0, 0, 0, 1);
+        }
+        .lowTip{
+          align-self: center;
         }
 </style>
 <script>
@@ -130,6 +137,21 @@
          GoToWalletPage(){
            router.push({
              uri:'/Wallet'
+           })
+         },
+         GoToCustomService(){
+           router.push({
+             uri:'/CustomService'
+           })
+         },
+         GoToSetting(){
+           router.push({
+             uri:'/Setting'
+           })
+         },
+         GoToRecommendation(){
+           router.push({
+             uri:'/Recommendation'
            })
          }
     }

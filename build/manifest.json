@@ -26,6 +26,13 @@
     },
     {
       "name": "system.websocketfactory"
+    },
+    {
+      "name": "service.share",
+      "params": {
+        "appSign": "MIIDMTCCAhmgAwIBAgIJAMKpjyszxkDpMA0GCSqGSIb3DQEBCwUAMC4xCzAJBgNVBAYTAkNOMQwwCgYDVQQKDANSUEsxETAPBgNVBAMMCFJQS0RlYnVnMCAXDTE3MDQxOTAyMzE0OVoYDzIxMTYwMzI2MDIzMTQ5WjAuMQswCQYDVQQGEwJDTjEMMAoGA1UECgwDUlBLMREwDwYDVQQDDAhSUEtEZWJ1ZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAK3kPd9jzvTctTIA3XNZVv9cHHDbAc6nTBfdZp9mtPOTkXFpvyCbkL0QjOog0+1pv8D7dFeP4ptWXU5CT3ImvaPR+16dAtMRcsxEr5q4zieJzx3O6huLUBa1k+xrzjXpRzkcOysmc8fTxt0tAwbDgJ2AA5TlXLTcVyb7GmJ+hl5CjnhoG5NNLrkqI7S29c1U3uokj8Q7hzaj0TURu/uB5ZIMCLZY9KFDugqaEcvmUyJiD0fuV6sAO/4kpiZUOnhV8/xWpRbMI4WFQsfgLOCV+X9uzUa29D677y//46t/EDSuQTHyBZblAcNMENkpMWZsH7J/+F19+U0/Hd5bJgneVRkCAwEAAaNQME4wHQYDVR0OBBYEFKDNSZtt47ttOBDQzIchFYyxsg3mMB8GA1UdIwQYMBaAFKDNSZtt47ttOBDQzIchFYyxsg3mMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBABaZctNrn4gLmNf/eNJ3x5CJIPjPwm6j9nwKhtadJ6BF+TIzSkJuHSgxULjW436F37otv94NPzT5PCBFWxgXoqgLqnWwvsaqC4LUEjsZviWW4CB824YDUquEUVGFLE/U5KTZ7Kh1ceyUk4N8+mtkXkanWoBBk0OF24lNrAsNLB63yTLr9HxEe75+kmvxf1qVJUGtaOEWIhiFMiAB5D4w/j2EFWktumjuy5TTwU0zhl52bc8V9SNixM1IaqzNrVPrdjv8viUX548pU3WTxZ5ylDsxhMC1q4BXQVeIY8C0cMEX+WHOmOCvWrkxCkP91pKsSPkuVrWlzrkn8OjoswP6sBw=",
+        "wxKey": "gh_007316653e7c"
+      }
     }
   ],
   "permissions": [
@@ -68,6 +75,15 @@
         "component": "index"
       },
       "Wallet": {
+        "component": "index"
+      },
+      "CustomService": {
+        "component": "index"
+      },
+      "Setting": {
+        "component": "index"
+      },
+      "Recommendation": {
         "component": "index"
       }
     }

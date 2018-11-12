@@ -1,0 +1,240 @@
+<template>
+    <div class="customService">
+        <div class="title">
+            <image src="/Common/back.png" style="width:60px;margin-top:20px;" @click="goBack"></image>
+            <text>客服中心</text>
+        </div>
+        <div class="latestOrder">
+            <div class="lastetOrderItem"><text>最近订单</text></div>
+            <div class="order"><text>您还没有订单</text></div>
+        </div>
+        <div class="content">
+            <div class="record" for="{{recordItem in records}}">
+                <div class="recordItemPart1">
+                    <image src="{{recordItem.src}}" style="width:40px;"></image>
+                    <text>{{recordItem.title}}</text>
+                </div>
+                <div class="recordItemPart2"><text>{{recordItem.detail}}</text></div>
+               </div>
+            <div class="question">
+                <text class="questionTitle">猜您想问</text>
+                <div class="divider"></div>
+                <div class="questionItem" for="{{questionItem in questions}}">
+                    <text>{{questionItem.text}}</text>
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="frequentQuestion">
+                <text class="frequentQuestionTitle">猜您想问</text>
+                <div class="divider"></div>
+                <div class="frequentQuestionItem" for="{{frequentQuestionItem in frequentQuestions}}">
+                    <div class="fre">
+                        <div class="part1">
+                            <image src="{{frequentQuestionItem.src}}" style="width:40px;"></image>
+                            <text>{{frequentQuestionItem.title}}</text>
+                        </div>
+                        <div class="part2Divider"></div>
+                        <div class="part3">
+                            <text>{{frequentQuestionItem.text1}}</text>
+                            <div class="divider"></div>
+                            <text>{{frequentQuestionItem.text2}}</text>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="contactCustom">
+                    <a class="contactCustomTitle" href="sms:15019589217">联系客服</a>
+                    <text>处理车费纠纷、物品遗失等问题</text>
+                </div>
+                <div class="contactSafe">
+                    <text class="contactSafeTitle">安全专线</text>
+                    <text>处理交通事故等人身安全问题</text>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<style>
+    .customService{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color:#E5E5E5;
+    }
+    .title{
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        text-align: center;
+    }
+    .title>text{
+        font-size: 38px;
+        font-weight: bold;
+        color: #000;
+    }
+    .latestOrder{
+        width: 100%;
+        height: 300px;
+        top:100px;
+        position: fixed;
+        background-color: #395571;
+        padding:20px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .lastetOrderItem>text{
+        color:#fff;
+        font-size:36px;
+        font-weight:bold;
+    }
+    .order{
+        align-self: center;
+        margin-left: 80px;
+    }
+    .order>text{
+        color:#C6BFBF;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 400px;
+    }
+    .record{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom:20px;
+    }
+    .recordItemPart1{
+        display: flex;
+        justify-content: space-between;
+    }
+    .question,.frequentQuestion{
+        width: 100%;
+        padding:20px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+    .questionTitle,.frequentQuestionTitle{
+        font-size: 36px;
+    }
+    .divider{
+        width: 100%;
+        height: 2px;
+        background-color: #E5E5E5;
+    }
+    .questionItem,.frequentQuestionItem{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .questionItem>text{
+        padding-bottom:15px;
+    }
+    .frequentQuestionItem{
+        width: 100%;
+        height: 200px;
+    }
+    .fre{
+        width: 100%;
+        /* height: 250px; */
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 5%;
+        margin-bottom: 30px;
+    }
+    .part1{
+        width: 25%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .part2Divider{
+        width: 2px;
+        height: 80%;
+        background-color:#E5E5E5; 
+        margin-right:4%;
+    }
+    .part3{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 20px;
+    }
+    .part3>text{
+        padding-top: 10px;
+        padding-bottom:10px;
+    }
+    .contact{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        justify-content: center;
+        align-items: center;
+    }
+    .contactCustom,.contactSafe{
+        width: 90%;
+        height: 120px;
+        background-color: #395571;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .contactSafe{
+        background-color: #fff;
+        margin-top: 20px;
+    }
+    .contactCustomTitle,.contactSafeTitle{
+        font-size: 36px;
+    }
+    .contactCustom>a,.contactCustom>text{
+        color: #fff;
+    }
+</style>
+<script>
+    import router from '@system.router'
+    export default{
+        data:{
+            records:[
+                {src:"/Common/CustomService/hourglass.png",title:"处理进度",detail:"暂无投诉记录"},
+                {src:"/Common/CustomService/icon_blacklist.png",title:"我的黑名单",detail:""}
+            ],
+            questions:[
+                {text:"如何支付订单"},
+                {text:"订单无法支付"},
+                {text:"线下支付了订单怎么办"},
+                {text:"发票多久寄出"},
+                {text:"司机提前计费"},
+            ],
+            frequentQuestions:[
+                {src:"/Common/CustomService/money.png",title:"支付相关",text1:"预支付车费退款",text2:"为什么要预支付车费"},
+                {src:"/Common/CustomService/mulu.png",title:"费用相关",text1:"被收了取消费",text2:"拼车费用超出一口价"},
+                {src:"/Common/CustomService/search.png",title:"查询信息",text1:"查找历史订单",text2:"查询补偿是否到帐"},
+                {src:"/Common/CustomService/file-invoice.png",title:"发票相关",text1:"如何申请发票",text2:"查询发票开取状态"}
+            ]
+        },
+        goBack(){
+            router.back();
+        }
+    }
+</script>

@@ -659,6 +659,9 @@ module.exports = {
               "classList": [
                 "content-item"
               ],
+              "events": {
+                "click": "GoToCustomService"
+              },
               "children": [
                 {
                   "type": "image",
@@ -685,6 +688,9 @@ module.exports = {
               "classList": [
                 "content-item"
               ],
+              "events": {
+                "click": "GoToSetting"
+              },
               "children": [
                 {
                   "type": "image",
@@ -721,6 +727,9 @@ module.exports = {
           "classList": [
             "btm"
           ],
+          "events": {
+            "click": "GoToRecommendation"
+          },
           "children": [
             {
               "type": "image",
@@ -805,6 +814,9 @@ module.exports = {
     {
       "type": "div",
       "attr": {},
+      "classList": [
+        "lowTip"
+      ],
       "children": [
         {
           "type": "text",
@@ -832,11 +844,15 @@ module.exports = {
     "backgroundColor": "#ffffff",
     "display": "flex",
     "flexDirection": "column",
-    "justifyContent": "space-between",
+    "justifyContent": "center",
     "alignContent": "space-around"
   },
   ".commonPart": {
-    "marginLeft": "140px"
+    "marginLeft": "140px",
+    "paddingTop": "30px",
+    "paddingRight": "30px",
+    "paddingBottom": "30px",
+    "paddingLeft": "30px"
   },
   ".partUser": {
     "display": "flex",
@@ -845,7 +861,8 @@ module.exports = {
     "flexDirection": "column"
   },
   ".partList": {
-    "marginLeft": "60px"
+    "marginLeft": "60px",
+    "marginTop": "100px"
   },
   ".panel-image": {
     "width": "50px"
@@ -856,15 +873,21 @@ module.exports = {
   ".partBottom": {
     "display": "flex",
     "alignContent": "flex-start",
-    "justifyContent": "space-between"
+    "justifyContent": "space-between",
+    "marginTop": "-200px"
   },
   ".btm": {
-    "width": "25%"
+    "width": "15%",
+    "display": "flex",
+    "flexDirection": "column"
   },
   ".divider": {
     "width": "100%",
     "height": "1px",
     "backgroundColor": "rgba(0,0,0,1)"
+  },
+  ".lowTip": {
+    "alignSelf": "center"
   }
 }
 
@@ -908,6 +931,21 @@ exports.default = {
   GoToWalletPage: function GoToWalletPage() {
     _system2.default.push({
       uri: '/Wallet'
+    });
+  },
+  GoToCustomService: function GoToCustomService() {
+    _system2.default.push({
+      uri: '/CustomService'
+    });
+  },
+  GoToSetting: function GoToSetting() {
+    _system2.default.push({
+      uri: '/Setting'
+    });
+  },
+  GoToRecommendation: function GoToRecommendation() {
+    _system2.default.push({
+      uri: '/Recommendation'
     });
   }
 };}

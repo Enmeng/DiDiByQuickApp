@@ -1,0 +1,205 @@
+<template>
+    <div class="settingPage">
+     <div class="setting">
+        <div class="title">
+            <image src="/Common/back.png" style="width:60px;margin-top:20px;" @click="goBack"></image>
+            <text>设置</text>
+        </div>
+        <div class="content">
+            <div class="contentItem" for="item in contentList">
+                <div class="itemPart" for="partItem in item.sub">
+                    <div class="part1">
+                        <div class="leftPart">
+                            <text class="partTitle">{{partItem.title}}</text>
+                            <text if="partItem.text!=undefined" style="color:#B7AAAA;font-size:26px;">{{partItem.text}}</text>
+                        </div>
+                        <div class="rightPart">
+                            <div if="partItem.src!=undefined" >
+                                <text>{{partItem.description}}</text>
+                                <image src="{{partItem.src}}" style="width:30px;"></image>
+                            </div>
+                            <switch else checked="{{partItem.switch}}"></switch>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
+        <div class="exit"  @click="showPrompt">
+            <text>退出登录</text>
+        </div>
+     </div>
+     <div if="exitPromptVisibility" class="mask" @click="hidePrompt">
+         <div class="exitContent">
+             <image src="/Common/Setting/prompt.png" style="width:50px;"></image>
+             <text>确定要退出吗</text>
+             <div class="choose">
+                 <div class="cancel"  @click="hidePrompt"><text>取消</text></div>
+                 <div class="confirm"  @click="hidePrompt"><text>确定</text>/div>
+             </div>
+         </div>
+     </div>
+    </div>
+</template>
+<style>
+    .settingPage{
+        width: 100%;
+        height: 100%;
+    }
+    .setting{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color:#E5E5E5;
+    }
+    .title{
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        height: 100px;
+        background-color: #fff;
+        text-align: center;
+    }
+    .title>text{
+        font-size: 38px;
+        font-weight: bold;
+        color: #000;
+    }
+    .content{
+        width: 100%;
+        margin-top: 100px;
+        display: flex;
+        flex-direction: column;
+    }
+    .contentItem{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        padding-bottom:0px;
+        padding-top:0px;
+        background-color: #fff;
+        margin-top: 20px;
+    }
+    .itemPart{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .part1{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
+    .divider{
+        width: 100%;
+        height: 2px;
+        background-color: #E5E5E5;
+    }
+    .leftPart{
+        display: flex;
+        flex-direction: column;
+    }
+    .exit{
+        margin-top: 20px;
+        width: 100%;
+        height: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+    }
+    .exit>text{
+        color: #F06405;
+    }
+    .mask{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        background-color: rgba(0,0,0,0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .exitContent{
+        width: 60%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+    }
+    .choose{
+        
+    }
+    .cancel,.confirm{
+       width: 50%;
+       height: 120px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       border:1px solid #E5E5E5;
+    }
+</style>
+<script>
+    import router from '@system.router';
+    export default{
+        data:{
+            contentList:[
+                {
+                    sub:[
+                        {title:"账户与安全",src:"/Common/Setting/next.png",description:""},
+                        {title:"切换语言",src:"/Common/Setting/next.png",description:""}
+                    ]
+                },
+                {
+                    sub:[
+                        {title:"常用地址",src:"/Common/Setting/next.png",description:""},
+                        {title:"行程安全",src:"/Common/Setting/next.png",description:""}
+                    ]
+                },
+                {
+                    sub:[
+                        {title:"实时路况",text:"打开后地图中将显示实时路况",description:"",switch:true},
+                        {title:"音效提示",text:"打开后将以语音为您播报订单状态",description:"",switch:true}
+                    ]
+                },
+                {
+                    sub:[
+                        {title:"清除缓存",src:"/Common/Setting/next.png",description:"2 MB"}
+                    ]
+                },
+                {
+                    sub:[
+                        {title:"用户指南",src:"/Common/Setting/next.png",description:""},
+                        {title:"问题反馈",src:"/Common/Setting/next.png",description:""}
+                    ]
+                },
+                {
+                    sub:[
+                        {title:"版本更新",src:"/Common/Setting/next.png",description:"V5.2.26_456"},
+                        {title:"法律条款与隐私政策",src:"/Common/Setting/next.png",description:""},
+                        {title:"关于系统",src:"/Common/Setting/next.png",description:""}
+                    ]
+                },
+            ],
+            exitPromptVisibility:false
+        },
+        goBack(){
+            router.back();
+        },
+        showPrompt(){
+            this.exitPromptVisibility=true;
+        },
+        hidePrompt(){
+            this.exitPromptVisibility=false;
+        }
+    }
+</script>
